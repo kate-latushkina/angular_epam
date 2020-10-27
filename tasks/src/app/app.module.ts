@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderDescriptionComponent } from './components/header-description/header-description.component';
 import { MainComponent } from './components/main/main.component';
-import { ListCourcesComponent } from './components/list-cources/list-cources.component';
+import { ListCoursesComponent } from './components/list-courses/list-courses.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { ListCourcesComponent } from './components/list-cources/list-cources.com
     HeaderDescriptionComponent,
     MainComponent,
     FooterComponent,
-    ListCourcesComponent
+    ListCoursesComponent
   ],
   imports: [
     BrowserModule,

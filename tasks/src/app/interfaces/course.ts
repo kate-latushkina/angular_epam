@@ -1,4 +1,4 @@
-export interface ICource {
+export interface ICourse {
     id: number;
     title: string;
     createDate: string;

@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {ICource} from './../../interfaces/cource';
+import { ICourse } from '../../interfaces/course';
 
 @Component({
-  selector: 'app-list-cources',
-  templateUrl: './list-cources.component.html',
-  styleUrls: ['./list-cources.component.css']
+  selector: 'app-list-courses',
+  templateUrl: './list-courses.component.html',
+  styleUrls: ['./list-courses.component.css']
 })
-export class ListCourcesComponent implements OnInit {
+export class ListCoursesComponent implements OnInit {
 
   constructor() { }
 
   public ngOnInit(): void {
   }
 
-  public getCources(): ICource[] {
+  public getCourses(): ICourse[] {
     return [{
       id: 1,
-      title: 'Video cource 1',
+      title: 'Video course 1',
       createDate: '26/10/2020',
       duration: '107 min',
       description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
