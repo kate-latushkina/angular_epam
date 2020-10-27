@@ -11,7 +11,31 @@ h3 {
     margin: 0;
     min-width: 50%;
 }
-.main-info {
+.main-info, .description-course, .description-course-buttons {
     display: flex;
     justify-content: space-between;
+}
+.description-course-buttons {
+    height: 40px;
+    margin: auto 0 auto 25px;
+}
+.edit {
+    margin-right: 10px;
+}
+.edit, .delete {
+    width: 100px;
+    color: white;
+    cursor: pointer;
+    background-color: cornflowerblue;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+.edit:hover, .delete:hover {
+    border: 2px solid blue;
+}
+.edit img, .delete img {
+    width: 17px;
+    margin-right: 10px;
 }

@@ -17,12 +17,23 @@ h2 {
     display: flex;
 }
 .user-section {
-    width: 150px;
+    width: 200px;
     display: flex;
     justify-content: space-between;
     color: #fff;
 }
-.user-section span {
-    margin: auto;
+.login, .logout {
+    margin: auto 0;
+}
+
+.logout button {
     cursor: pointer;
+    background-color: inherit;
+    color: white;
+    border: none;
+    outline: none;
+}
+.icon {
+    height: 20px;
+    margin: -4px 8px -4px 0;
 }

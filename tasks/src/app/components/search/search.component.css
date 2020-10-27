@@ -1,0 +1,20 @@
+.search-panel {
+  width: 350px;
+  height: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+input {
+  width: 250px;
+}
+.search {
+  width: 80px;
+  background-color: lightgreen;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.search:hover {
+  border: 2px solid green;
+}

@@ -1,0 +1,11 @@
+.more {
+  width: 100%;
+  margin-top: 20px;
+  height: 40px;
+  cursor: pointer;
+  outline: none;
+  text-transform: uppercase;
+}
+.more:hover {
+  text-decoration: underline;
+}

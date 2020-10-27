@@ -1,0 +1,28 @@
+.add-course-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.add-course {
+  display: flex;
+  justify-content: space-evenly;
+  width: 130px;
+  height: 35px;
+  background-color: cornflowerblue;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  color: azure;
+  outline: none;
+  cursor: pointer;
+}
+.add-course:hover {
+  border: 2px solid blue;
+}
+.plus {
+  width: 17px;
+  margin: auto 0;
+}
+.plus-text {
+  font-size: 16px;
+  margin: auto 10px auto 0;
+}
