@@ -22,7 +22,7 @@ h2 {
     justify-content: space-between;
     color: #fff;
 }
-.user-section span {
+.login, .logout {
     margin: auto;
     cursor: pointer;
 }
