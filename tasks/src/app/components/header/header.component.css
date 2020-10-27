@@ -2,7 +2,7 @@
     width: 100%;
     background-color: rgb(58, 58, 58);
 }
-h2 {
+.title-name {
     margin: auto 0 auto 10px;
     color: #fff;
 }
@@ -26,7 +26,7 @@ h2 {
     margin: auto 0;
 }
 
-.logout button {
+.logout-button {
     cursor: pointer;
     background-color: inherit;
     color: white;

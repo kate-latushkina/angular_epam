@@ -8,8 +8,6 @@ import { ICourse } from '../../interfaces/course';
 })
 export class ListCoursesComponent implements OnInit {
 
-  constructor() { }
-
   public ngOnInit(): void {
   }
 
