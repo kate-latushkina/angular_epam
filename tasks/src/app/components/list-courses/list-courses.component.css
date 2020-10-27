@@ -7,7 +7,7 @@
 .create-date, .duration {
     width: 100px;
 }
-h3 {
+.course-title {
     margin: 0;
     min-width: 50%;
 }
@@ -35,7 +35,7 @@ h3 {
 .edit:hover, .delete:hover {
     border: 2px solid blue;
 }
-.edit img, .delete img {
+.course-button {
     width: 17px;
     margin-right: 10px;
 }

@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
 }
-input {
+.search-input {
   width: 250px;
 }
 .search {
