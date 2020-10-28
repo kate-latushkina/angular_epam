@@ -13,6 +13,8 @@ import { SearchComponent } from './components/search/search.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { LoadComponent } from './components/load/load.component';
 import { HomeComponent } from './components/home/home.component';
+import { TimePipe } from './components/list-courses/list-time.pipe'
+import { DateDirective } from './components/list-courses/list-date.directive'
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { HomeComponent } from './components/home/home.component';
     AddCourseComponent,
     LoadComponent,
     HomeComponent,
+    TimePipe,
+    DateDirective
   ],
   imports: [
     BrowserModule,

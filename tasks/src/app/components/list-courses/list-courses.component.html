@@ -1,8 +1,8 @@
 <div class="courses" *ngFor='let item of getCourses()'>
   <div class="main-info">
-    <h3 class="course-title">{{item.title}}</h3>
-    <span class="create-date">{{item.createDate}}</span>
-    <span class="duration">{{item.duration}}</span>
+    <h3 class="course-title">{{item.title | uppercase}}</h3>
+    <span class="create-date" dateOfCreate>{{item.createDate}}</span>
+    <span class="duration">{{item.duration | hoursTime}}</span>
   </div>
   <div class="description-course">
     <p class="description">{{item.description}}</p>
