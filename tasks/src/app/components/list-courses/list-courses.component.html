@@ -1,8 +1,14 @@
 <div class="courses" *ngFor='let item of getCourses()'>
   <div class="main-info">
-    <h3>{{item.title}}</h3>
+    <h3 class="course-title">{{item.title}}</h3>
     <span class="create-date">{{item.createDate}}</span>
     <span class="duration">{{item.duration}}</span>
   </div>
-  <p class="description">{{item.description}}</p>
+  <div class="description-course">
+    <p class="description">{{item.description}}</p>
+    <div class="description-course-buttons">
+        <button class="edit"><img src="../../../assets/pencil-alt-solid.svg" alt="edit" class="course-button">Edit</button>
+        <button class="delete"><img src="../../../assets/trash-alt-regular.svg" alt="delete" class="course-button">Delete</button>
+    </div>
+  </div>
 </div>
