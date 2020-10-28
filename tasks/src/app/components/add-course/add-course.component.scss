@@ -1,3 +1,4 @@
+@import '../../../colors';
 .add-course-button {
   display: flex;
   justify-content: flex-end;
@@ -8,15 +9,15 @@
   justify-content: space-evenly;
   width: 130px;
   height: 35px;
-  background-color: cornflowerblue;
+  background-color: $cornflowerblue;
   border: 2px solid transparent;
   border-radius: 5px;
-  color: azure;
+  color: $text-white;
   outline: none;
   cursor: pointer;
 }
 .add-course:hover {
-  border: 2px solid blue;
+  border: 2px solid $border-blue;
 }
 .plus {
   width: 17px;

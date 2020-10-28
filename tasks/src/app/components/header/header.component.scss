@@ -1,10 +1,11 @@
+@import '../../../colors';
 .header {
     width: 100%;
-    background-color: rgb(58, 58, 58);
+    background-color: $background-grey;
 }
 .title-name {
     margin: auto 0 auto 10px;
-    color: #fff;
+    color: $text-white;
 }
 .logo {
     width: 40px;
@@ -20,7 +21,7 @@
     width: 200px;
     display: flex;
     justify-content: space-between;
-    color: #fff;
+    color: $text-white;
 }
 .login, .logout {
     margin: auto 0;
@@ -29,7 +30,7 @@
 .logout-button {
     cursor: pointer;
     background-color: inherit;
-    color: white;
+    color: $text-white;
     border: none;
     outline: none;
 }
