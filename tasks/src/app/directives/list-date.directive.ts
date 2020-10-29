@@ -10,6 +10,5 @@ export class DateDirective {
     // .toLocaleDateString()
     constructor(el: ElementRef) {
         console.log(this.today)
-        
     }
 }
