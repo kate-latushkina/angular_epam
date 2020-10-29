@@ -13,8 +13,10 @@ import { SearchComponent } from './components/search/search.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { LoadComponent } from './components/load/load.component';
 import { HomeComponent } from './components/home/home.component';
-import { TimePipe } from './components/list-courses/list-time.pipe'
-import { DateDirective } from './components/list-courses/list-date.directive'
+import { TimePipe } from './pipes/list-time.pipe';
+import { DateDirective } from './directives/list-date.directive'
+import { ListFilterPipe } from './pipes/list-filter.pipe';
+import { ListDateBorderPipe } from './pipes/list-date-border.pipe';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { DateDirective } from './components/list-courses/list-date.directive'
     LoadComponent,
     HomeComponent,
     TimePipe,
-    DateDirective
+    DateDirective,
+    ListFilterPipe,
+    ListDateBorderPipe
   ],
   imports: [
     BrowserModule,

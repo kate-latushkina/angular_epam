@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICourse } from '../../interfaces/course';
-// import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-list-courses',
@@ -8,9 +7,9 @@ import { ICourse } from '../../interfaces/course';
   styleUrls: ['./list-courses.component.scss'],
 })
 export class ListCoursesComponent implements OnInit {
-  @Input() isText: boolean;
+  @Input() isText: string ;
   public ngOnInit(): void {
-    console.log(this.isText)
+    this.isText = '';
   }
 
   public getCourses(): ICourse[] {

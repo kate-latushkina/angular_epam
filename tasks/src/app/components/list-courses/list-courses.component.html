@@ -1,26 +1,16 @@
-<div *ngIf="isText">
-  <div class="courses" *ngFor='let item of getCourses()'>
-    <!-- <ng-template> -->
-      <div class="main-info">
-        <h3 class="course-title">{{item.title | uppercase}}</h3>
-        <span class="duration">{{item.duration | hoursTime}}</span>
-        <span class="create-date">{{item.createDate | date:'dd MMM yyyy'}}</span>
-      </div>
-      <div class="description-course">
-        <p class="description">{{item.description}}</p>
-        <div class="description-course-buttons">
-          <button class="edit"><img src="../../../assets/pencil-alt-solid.svg" alt="edit"
-              class="course-button">Edit</button>
-          <button class="delete"><img src="../../../assets/trash-alt-regular.svg" alt="delete"
-              class="course-button">Delete</button>
-        </div>
-      </div>
-    <!-- </ng-template> -->
+<div class="courses" *ngFor='let item of getCourses() | listFilter: isText'>
+  <div class="main-info">
+    <h3 class="course-title">{{item.title | uppercase}}</h3>
+    <span class="duration">{{item.duration | hoursTime}}</span>
+    <span class="create-date">{{item.createDate | date:'dd MMM yyyy'}}</span>
+  </div>
+  <div class="description-course">
+    <p class="description">{{item.description}}</p>
+    <div class="description-course-buttons">
+      <button class="edit"><img src="../../../assets/pencil-alt-solid.svg" alt="edit"
+          class="course-button">Edit</button>
+      <button class="delete"><img src="../../../assets/trash-alt-regular.svg" alt="delete"
+          class="course-button">Delete</button>
+    </div>
   </div>
 </div>
-
-<div *ngIf="!isText">
-  <p class="not-courses">Not</p>
-</div>
-
-<!-- *ngIf="isText; then coursesBlock else notCoursesBlock" -->
