@@ -1,10 +1,8 @@
-<main class="main">
+<main class="main" (isTextEvent)="setValue($event)">
         <app-search></app-search>
         <app-add-course></app-add-course>
         <div class="courses-section">
-            <app-list-courses></app-list-courses>
-            <app-list-courses></app-list-courses>
-            <app-list-courses></app-list-courses>
+            <app-list-courses [isText]="isText"></app-list-courses>
             <app-load></app-load>
         </div>
 </main>

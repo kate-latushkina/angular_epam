@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  public isText: boolean;
   public ngOnInit(): void {
   }
-
+  public setValue(value: boolean) {
+    this.isText = value;
+  }
 }

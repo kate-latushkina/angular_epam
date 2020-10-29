@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -7,12 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  public inputValue: string;
+  // public inputValue: string;
+  @Output() isTextEvent = new EventEmitter<boolean>();
   public ngOnInit(): void {
   }
 
-  public getInputText(): void {
-    console.log(this.inputValue)
+  public getInputText(value: boolean) {
+    if (!value) {
+      this.isTextEvent.emit(value);
+    }
+    console.log(value)
   }
 
 }
