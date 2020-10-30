@@ -16,9 +16,11 @@ export class DateDirective implements AfterViewInit {
         const howManyDays = moment(itemValue).fromNow();
         const numDays = +howManyDays.split(' ')[0];
         if (numDays < 14 && numDays > 0) {
-            this.el.nativeElement.style.border = '3px solid green'
+            this.el.nativeElement.style.border = '3px solid green';
+        } else if (!numDays) {
+            this.el.nativeElement.style.border = '3px solid blue';
         } else {
-            this.el.nativeElement.style.border = '3px solid blue'
+            this.el.nativeElement.style.border = '1px solid black';
         }
     }
 }
