@@ -119,6 +119,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "tasks"
+    }
+  },
+  "defaultProject": "tasks",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
