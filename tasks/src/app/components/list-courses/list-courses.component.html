@@ -1,4 +1,4 @@
-<div class="courses" *ngFor='let item of getCourses() | listFilter: isText'>
+<div class="courses" *ngFor='let item of getCourses() | listFilter: isText' dateOfCreate [itemDate]="item.createDate">
   <div class="main-info">
     <h3 class="course-title">{{item.title | uppercase}}</h3>
     <span class="duration">{{item.duration | hoursTime}}</span>
