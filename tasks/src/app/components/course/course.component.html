@@ -1,7 +1,7 @@
 <div class="main-info" dateOfCreate [itemDate]="item.createDate">
   <div class="main-info-course">
     <div class="name-course">
-      <h3 class="course-title">{{item.title | uppercase}}</h3>
+      <h4 class="course-title">{{item.title | uppercase}}</h4>
       <svg (click)="makeFavorite()" [ngClass]="{'active': isFavorite}" aria-hidden="true" focusable="false"
         data-prefix="far" data-icon="star" class="svg-inline--fa fa-star fa-w-18" role="img"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -19,9 +19,9 @@
   <div class="description-course">
     <p class="description">{{item.description}}</p>
     <div class="description-course-buttons">
-      <button class="edit"><img src="../../../assets/pencil-alt-solid.svg" alt="edit"
+      <button class="edit" (click)="coursesService.updateItem()"><img src="../../../assets/pencil-alt-solid.svg" alt="edit"
           class="course-button">Edit</button>
-      <button class="delete"><img src="../../../assets/trash-alt-regular.svg" alt="delete"
+      <button class="delete" (click)="coursesService.removeItem(item.id)"><img src="../../../assets/trash-alt-regular.svg" alt="delete"
           class="course-button">Delete</button>
     </div>
   </div>

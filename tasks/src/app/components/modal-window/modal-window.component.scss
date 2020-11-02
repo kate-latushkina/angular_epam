@@ -1,0 +1,19 @@
+@import '../../../_colors.scss';
+
+.modal-section {
+  width: 35%;
+  height: 150px;
+  background-color: $text-white;
+  margin: 15% auto;
+  padding: 15px;
+  border-radius: 10px;
+}
+.modal-text {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}

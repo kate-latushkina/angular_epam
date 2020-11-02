@@ -1,5 +1,5 @@
 @import '../../../colors';
-.description-course, .description-course-buttons, .info-course {
+.description-course, .description-course-buttons, .info-course, .main-info-course {
   display: flex;
   justify-content: space-between;
 }
@@ -9,8 +9,7 @@
   margin-bottom: 20px;
 }
 .main-info-course {
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .course-title {
@@ -48,7 +47,7 @@
   display: flex;
 }
 .info-course {
-  width: 30%;
+  width: 25%;
 }
 .fa-star {
   display: inline-block;

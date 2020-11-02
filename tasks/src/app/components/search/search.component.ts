@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
 
   public getInputText(value: string) {
     this.isTextEvent.emit(value);
+    this.inputValue = '';
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Output } from '@angular/core';
 
 
 @Component({
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements AfterContentInit {
 
   public isText: string;
-  public ngOnInit(): void {
+  @Output() isModal: boolean;
+  public ngAfterContentInit(): void {
+    this.isModal = false;
   }
   public setValue(value: string) {
     this.isText = value;

@@ -2,7 +2,10 @@
         <app-search (isTextEvent)="setValue($event)"></app-search>
         <app-add-course></app-add-course>
         <div class="courses-section">
-            <app-list-courses [isText]="isText"></app-list-courses>
+            <app-list-courses [isText]="isText" [isModal]="isModal"></app-list-courses>
             <app-load></app-load>
+        </div>
+        <div *ngIf="isModal" class="modal-window">
+            <app-modal-window [isModal]="isModal"></app-modal-window>
         </div>
 </main>
