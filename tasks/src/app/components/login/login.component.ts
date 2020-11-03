@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  // @ViewChild('inputUserName') inputUserNameRef: ElementRef;
+  
+  constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+
   }
 
+  
 }

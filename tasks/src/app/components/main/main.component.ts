@@ -1,4 +1,5 @@
 import { AfterContentInit, Component, Output } from '@angular/core';
+// import { ModalService } from '../../services/modal.service';
 
 
 @Component({
@@ -10,6 +11,8 @@ export class MainComponent implements AfterContentInit {
 
   public isText: string;
   @Output() isModal: boolean;
+  public isAuth: boolean = true;
+  
   public ngAfterContentInit(): void {
     this.isModal = false;
   }

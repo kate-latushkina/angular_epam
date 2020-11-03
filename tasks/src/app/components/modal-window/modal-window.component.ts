@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CoursesService } from '../../services/courses.service';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-modal-window',
@@ -9,7 +9,7 @@ import { CoursesService } from '../../services/courses.service';
 export class ModalWindowComponent implements OnInit {
 
   @Input() isModal: boolean;
-  constructor(public coursesService: CoursesService) {}
+  constructor(public modalService: ModalService) {}
   
   public ngOnInit(): void {
   }

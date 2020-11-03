@@ -10,11 +10,14 @@ import { CoursesService } from '../../services/courses.service'
 export class CourseComponent {
   @Input() item: ICourse;
   @Input() isFavorite: boolean;
+  @Input() isModal: boolean;
+
   @Output() onFavorite: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(public coursesService: CoursesService) {}
 
   public makeFavorite() {
     this.onFavorite.emit(this.item.id)
+    console.log(this.isModal)
   }
 }

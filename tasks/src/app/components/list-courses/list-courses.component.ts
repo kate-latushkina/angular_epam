@@ -12,7 +12,7 @@ export class ListCoursesComponent implements OnInit {
   constructor(public coursesService: CoursesService) {}
 
   @Input() isText: string ;
-  @Input() isModal: boolean;
+  // @Input() isModal: boolean;
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {

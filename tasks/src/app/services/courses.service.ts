@@ -58,7 +58,6 @@ export class CoursesService {
   }
 
   public removeItem(id: number) {
-    // console.log(this.isModal)
     this.courses.forEach((course, index) => {
       if (course.id === id) {
         this.courses.splice(index, 1);

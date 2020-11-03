@@ -19,6 +19,7 @@ import { ListFilterPipe } from './pipes/list-filter.pipe';
 import { CourseComponent } from './components/course/course.component';
 import { CoursesService } from './services/courses.service';
 import { AuthService } from './services/auth.service';
+import { ModalService } from './services/modal.service';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
@@ -51,7 +52,8 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [
     CoursesService,
-    AuthService
+    AuthService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })
