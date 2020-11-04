@@ -24,4 +24,3 @@ export class CourseComponent {
   }
 
 }
-// this.coursesService.removeItem.bind(this.item.id)
