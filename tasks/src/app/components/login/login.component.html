@@ -14,5 +14,5 @@
     </div>
     <input type="password" class="form-control" placeholder="Enter password" required #inputUserPassword (input)="isDisabledButton(inputUserName.value, inputUserPassword.value)">
   </div>
-  <button class="btn btn-success" routerLink="/main" (click)="authService.login()" [disabled]="isDisabled">Login</button>
+  <button class="btn btn-success" routerLink="/main" (click)="showUser(inputUserName.value, inputUserPassword.value)" [disabled]="isDisabled">Login</button>
 </form>

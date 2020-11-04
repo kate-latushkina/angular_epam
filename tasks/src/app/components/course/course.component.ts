@@ -11,7 +11,6 @@ import { ModalService } from '../../services/modal.service';
 export class CourseComponent {
   @Input() item: ICourse;
   @Input() isFavorite: boolean;
-  @Input() isModal: boolean;
 
   @Output() onFavorite: EventEmitter<number> = new EventEmitter<number>();
   @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
@@ -20,7 +19,6 @@ export class CourseComponent {
 
   public makeFavorite() {
     this.onFavorite.emit(this.item.id)
-    console.log(this.isModal)
   }
 
 }

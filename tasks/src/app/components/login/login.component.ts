@@ -8,15 +8,17 @@ import { AuthService} from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  // @ViewChild('inputUserName') inputUserNameRef: ElementRef;
-  // @ViewChild('inputUserPassword') inputUserPassword: ElementRef;
   public isDisabled: boolean = true;
-  @Input() isAuth;
-
+  isAuth: boolean;
   constructor(public authService: AuthService) {}
 
   public ngOnInit(): void {
+    this.authService.sharedAuth.subscribe(isAuth => this.isAuth = isAuth);
+  }
 
+  showUser(name, password) {
+    this.authService.isAuthenticated(true);
+    this.authService.getUserInfo(name, password)
   }
   isDisabledButton(name, password) {
     if (name && password) {

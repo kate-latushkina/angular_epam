@@ -1,28 +1,29 @@
-import { ElementRef, Injectable, Input, Output, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  @Input() isAuth;
+  public isAuth: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  sharedAuth = this.isAuth.asObservable();
 
   public login() {
     console.log('login is successfully')
-    this.isAuthenticated();
   }
 
   public logout() {
     console.log('logout')
   }
 
-  public isAuthenticated() {
-    console.log(!this.isAuth)
-    return this.isAuth = !this.isAuth
+  public isAuthenticated(isAuth: boolean) {
+    // isAuth = false;
+    this.isAuth.next(isAuth);
   }
   
-  // public getUserInfo(name, password) {
-  //   console.log('name - ' + name)
-  //   console.log('password - ' + password)
-  // }
+  public getUserInfo(name, password) {
+    console.log('name - ' + name)
+    console.log('password - ' + password)
+  }
 }

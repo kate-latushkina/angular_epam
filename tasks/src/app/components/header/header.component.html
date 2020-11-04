@@ -4,7 +4,7 @@
             <img src="../../../assets/play-button.png" alt="play-button" [class.logo]='true'>
             <h5 class="title-name">Video course</h5>
         </div>
-        <div class="user-section">
+        <div class="user-section" *ngIf="isAuth">
             <div class="login">
                 <img src="../../../assets/user-regular.svg" alt="user" class="icon">
                 <span>User login</span>
