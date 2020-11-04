@@ -1,5 +1,5 @@
-import { AfterContentInit, Component, Output } from '@angular/core';
-// import { ModalService } from '../../services/modal.service';
+import { Component } from '@angular/core';
+// import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -7,14 +7,15 @@ import { AfterContentInit, Component, Output } from '@angular/core';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements AfterContentInit {
+export class MainComponent {
 
   public isText: string;
-  @Output() isModal: boolean;
-  public isAuth: boolean = true;
-  
-  public ngAfterContentInit(): void {
-    this.isModal = false;
+  public isAuth: boolean;
+
+  // constructor(public authService: AuthService) {}
+
+  public ngOnInit() {
+    this.isAuth = true;
   }
   public setValue(value: string) {
     this.isText = value;

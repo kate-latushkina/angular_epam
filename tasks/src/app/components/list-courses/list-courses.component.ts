@@ -1,18 +1,19 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
+import { ModalService } from '../../services/modal.service';
+import { ICourse } from '../../interfaces/course';
 
 @Component({
   selector: 'app-list-courses',
   templateUrl: './list-courses.component.html',
   styleUrls: ['./list-courses.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListCoursesComponent implements OnInit {
 
-  constructor(public coursesService: CoursesService) {}
+  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
   @Input() isText: string ;
-  // @Input() isModal: boolean;
+  @Input() item: ICourse;
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
@@ -26,4 +27,9 @@ export class ListCoursesComponent implements OnInit {
       this.favorites.add(id);
     }
   }
+
+  public deleteItem(id: number) {
+    this.modalService.openModal(this.coursesService.removeItem.bind(this.coursesService, id))
+  }
+
 }

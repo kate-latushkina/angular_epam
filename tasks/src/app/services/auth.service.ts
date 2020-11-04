@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable, Input, Output, ViewChild } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public isAuth: boolean = true;
+  @Input() isAuth;
+
   public login() {
     console.log('login is successfully')
+    this.isAuthenticated();
   }
 
   public logout() {
@@ -15,8 +17,8 @@ export class AuthService {
   }
 
   public isAuthenticated() {
-    this.isAuth = !this.isAuth
-    console.log('here')
+    console.log(!this.isAuth)
+    return this.isAuth = !this.isAuth
   }
   
   // public getUserInfo(name, password) {

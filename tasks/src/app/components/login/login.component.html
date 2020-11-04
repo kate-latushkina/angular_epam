@@ -5,16 +5,14 @@
       <span>Email:</span>
       <span class="small">*required</span>
     </div>
-    <input type="email" class="form-control" placeholder="Enter e-mail" required #inputUserName>
+    <input type="email" class="form-control" placeholder="Enter e-mail" required #inputUserName (input)="isDisabledButton(inputUserName.value, inputUserPassword.value)">
   </div>
   <div class="form-group">
     <div class="first-line">
       <span>Password:</span>
       <span class="small">*required</span>
     </div>
-    <input type="password" class="form-control" placeholder="Enter password" required #inputUserPassword>
+    <input type="password" class="form-control" placeholder="Enter password" required #inputUserPassword (input)="isDisabledButton(inputUserName.value, inputUserPassword.value)">
   </div>
-  <button class="btn btn-success" (click)="authService.login()" (isAuth)="authService.isAuthenticated()" [disabled]="true">Login</button>
+  <button class="btn btn-success" (click)="authService.login()" [disabled]="isDisabled">Login</button>
 </form>
-
-<!-- inputUserName.value && inputUserPassword.value -->

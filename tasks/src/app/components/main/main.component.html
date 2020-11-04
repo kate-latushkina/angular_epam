@@ -1,12 +1,10 @@
-<app-login *ngIf="isAuth"></app-login>
-<main class="main" *ngIf="!isAuth">
+<!-- <app-login *ngIf="isAuth"></app-login> -->
+<main class="main"> 
     <app-search (isTextEvent)="setValue($event)"></app-search>
     <app-add-course></app-add-course>
     <div class="courses-section">
         <app-list-courses [isText]="isText"></app-list-courses>
         <app-load></app-load>
     </div>
-    <div *ngIf="isModal" class="modal-window">
-        <app-modal-window></app-modal-window>
-    </div>
+    <app-modal-window></app-modal-window>
 </main>

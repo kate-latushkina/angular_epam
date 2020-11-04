@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICourse } from '../../interfaces/course';
-import { CoursesService } from '../../services/courses.service'
+import { CoursesService } from '../../services/courses.service';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-course',
@@ -13,11 +14,14 @@ export class CourseComponent {
   @Input() isModal: boolean;
 
   @Output() onFavorite: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(public coursesService: CoursesService) {}
+  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
   public makeFavorite() {
     this.onFavorite.emit(this.item.id)
     console.log(this.isModal)
   }
+
 }
+// this.coursesService.removeItem.bind(this.item.id)

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { Modal } from 'src/app/modal';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -8,13 +9,18 @@ import { ModalService } from '../../services/modal.service';
 })
 export class ModalWindowComponent implements OnInit {
 
-  @Input() isModal: boolean;
+  public isOpen: boolean;
+  public closeFn: () => void;
   constructor(public modalService: ModalService) {}
   
   public ngOnInit(): void {
+    this.modalService.isOpen.subscribe((modal: Modal) => {
+      this.isOpen = modal.isOpen;
+      this.closeFn = modal?.closeFn;
+    })
   }
-  public isVisibleModal() {
-    this.isModal = !this.isModal;
-    console.log(this.isModal)
+  public close() {
+    this.closeFn()
+    this.modalService.closeModal()
   }
 }
