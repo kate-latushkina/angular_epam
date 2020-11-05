@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ICourse } from 'src/app/interfaces/course';
 
 
 @Component({
@@ -9,8 +10,8 @@ import { Component } from '@angular/core';
 export class MainComponent {
 
   public isText: string;
-
   public setValue(value: string) {
     this.isText = value;
   }
+
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../../services/courses.service'
+import { Modal } from 'src/app/modal';
+import { CoursesService } from '../../services/courses.service';
+import { ModalCourseService } from '../../services/modal-course.service';
 
 @Component({
   selector: 'app-add-course',
@@ -8,9 +10,10 @@ import { CoursesService } from '../../services/courses.service'
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor(public coursesService: CoursesService) {}
+  public courseInfo: Modal;
+  constructor(public coursesService: CoursesService, public modalCourseService: ModalCourseService) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.modalCourseService.courseInfo.subscribe(courseInfo => courseInfo = courseInfo);
   }
-
 }

@@ -19,7 +19,7 @@
   <div class="description-course">
     <p class="description">{{item.description}}</p>
     <div class="description-course-buttons">
-      <button class="edit" (click)="coursesService.updateItem()"><img src="../../../assets/pencil-alt-solid.svg" alt="edit"
+      <button class="edit"  (click)="onEdit()"><img src="../../../assets/pencil-alt-solid.svg" alt="edit"
           class="course-button">Edit</button>
       <button class="delete" (click)="onDelete.emit(item.id)"><img src="../../../assets/trash-alt-regular.svg" alt="delete"
           class="course-button">Delete</button>

@@ -1,5 +1,6 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, Input, Output } from '@angular/core';
 import { ICourse } from '../interfaces/course';
+import { ModalCourseService } from './modal-course.service'
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,13 @@ import { ICourse } from '../interfaces/course';
 export class CoursesService {
 
   @Input() isModal: boolean;
+  constructor(public modalCourseService: ModalCourseService) {}
 
   public courses = [
     {
       id: 1,
       title: 'Video course 1. First',
-      createDate: new Date('2020-11-02'),
+      createDate: new Date('2020-11-12'),
       duration: 107,
       description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -47,14 +49,18 @@ export class CoursesService {
 
   public createCourse() {
     console.log('create course')
+    // this.modalCourseService.openModal();
   }
 
-  public getItem(id: number) {
-    return this.courses[id - 1]
+  public getItem(item: ICourse) {
+    this.modalCourseService.openModal(item);
+    console.log(item)
   }
 
   public updateItem() {
-    console.log('update')
+    console.log('save')
+    // this.modalCourseService.closeModal(false)
+    // this.courses.push() запушить данные
   }
 
   public removeItem(id: number) {

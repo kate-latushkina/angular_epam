@@ -23,6 +23,7 @@ import { ModalService } from './services/modal.service';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
+import { CourseModalComponent } from './components/course-modal/course-modal.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { LoginComponent } from './components/login/login.component';
     CourseComponent,
     ModalWindowComponent,
     LoginComponent,
+    CourseModalComponent,
   ],
   imports: [
     BrowserModule,

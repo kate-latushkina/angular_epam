@@ -1,0 +1,44 @@
+<div class="modal-course" *ngIf="courseInfo">
+    <div class="modal-section">
+        <h4>Course</h4>
+        <div class="info-name">
+            <div class="first-line">
+                <label for="i-title">Title</label>
+                <span class="small">*required</span>
+            </div>
+            <input type="text" id="i-title" placeholder="Text input" class="form-control" #inputTitle required>
+        </div>
+        <div class="info-description">
+            <div class="first-line">
+                <label for="i-description">Description</label>
+                <span class="small">*required</span>
+            </div>
+            <textarea rows="5" placeholder="Add description" id="i-description" class="form-control" #inputDescription required></textarea>
+        </div>
+        <div class="info-duration">
+            <div class="first-line">
+                <label for="i-duration">Duration</label>
+                <span class="small">*required</span>
+            </div>
+            <input type="number" id="i-duration" class="form-control" placeholder="minutes" #inputTime required>
+        </div>
+        <div class="info-date">
+            <div class="first-line">
+                <label for="i-date">Date</label>
+                <span class="small">*required</span>
+            </div>
+            <input type="date" id="i-date" class="form-control" placeholder="MM/DD/YYYY" #inputDate required>
+        </div>
+        <div class="info-authors">
+            <div class="first-line">
+                <label for="i-authors">Authors</label>
+                <span class="small">*required</span>
+            </div>
+            <input type="text" id="i-authors" class="form-control" placeholder="Start typing" #inputAuthors required>
+        </div>
+        <div class="info-buttons">
+            <button class="btn btn-secondary" (click)="modalCourseService.closeModal()">Cancel</button>
+            <button class="btn btn-success" (click)="coursesService.updateItem()">Save</button>
+        </div>
+    </div>
+</div>
