@@ -26,7 +26,7 @@
   width: 100px;
   color: $text-white;
   cursor: pointer;
-  background-color: cornflowerblue;
+  background-color: $cornflowerblue;
   border: none;
   border-radius: 5px;
   text-align: center;
@@ -57,5 +57,5 @@
   fill: $star-gray;
 }
 .active {
-  fill: rgb(182, 135, 5);
+  fill: $active-icon;
 }
