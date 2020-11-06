@@ -18,7 +18,9 @@ export class CourseModalComponent implements OnInit {
   public ngOnInit(): void {
     this.modalCourseService.isOpen.subscribe((modal: Modal) => {
       this.isOpen = modal.isOpen;
-      this.item = modal.course;
+      if(modal.course) {
+        this.item = modal.course;
+      }
     });
   }
   
