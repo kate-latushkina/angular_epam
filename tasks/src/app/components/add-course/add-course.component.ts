@@ -10,10 +10,12 @@ import { ModalCourseService } from '../../services/modal-course.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  public courseInfo: Modal;
+  public isOpen: boolean;
   constructor(public coursesService: CoursesService, public modalCourseService: ModalCourseService) {}
 
   public ngOnInit(): void {
-    this.modalCourseService.courseInfo.subscribe(courseInfo => courseInfo = courseInfo);
+    this.modalCourseService.isOpen.subscribe((modal: Modal) => {
+      this.isOpen = modal.isOpen;
+    });
   }
 }

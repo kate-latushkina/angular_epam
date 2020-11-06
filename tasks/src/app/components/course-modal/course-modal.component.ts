@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalCourseService } from '../../services/modal-course.service';
 import { CoursesService } from '../../services/courses.service';
 import { Modal } from 'src/app/modal';
+import { ICourse } from 'src/app/interfaces/course';
 
 @Component({
   selector: 'app-course-modal',
@@ -10,10 +11,18 @@ import { Modal } from 'src/app/modal';
 })
 export class CourseModalComponent implements OnInit {
 
-  public courseInfo: Modal;
+  public isOpen: boolean;
+  public item: ICourse;
   constructor(public modalCourseService: ModalCourseService, public coursesService: CoursesService) { }
 
   public ngOnInit(): void {
-    this.modalCourseService.courseInfo.subscribe(courseInfo => courseInfo = courseInfo);
+    this.modalCourseService.isOpen.subscribe((modal: Modal) => {
+      this.isOpen = modal.isOpen;
+      this.item = modal.course;
+    });
+  }
+  
+  public close() {
+    this.modalCourseService.closeModal()
   }
 }

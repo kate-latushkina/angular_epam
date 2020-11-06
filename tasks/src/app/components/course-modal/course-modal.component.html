@@ -1,4 +1,4 @@
-<div class="modal-course" *ngIf="courseInfo">
+<div class="modal-course" *ngIf="isOpen">
     <div class="modal-section">
         <h4>Course</h4>
         <div class="info-name">
@@ -6,28 +6,31 @@
                 <label for="i-title">Title</label>
                 <span class="small">*required</span>
             </div>
-            <input type="text" id="i-title" placeholder="Text input" class="form-control" #inputTitle required>
+            <input type="text" value="{{item.title}}" id="i-title" placeholder="Text input" class="form-control" #inputTitle required>
         </div>
         <div class="info-description">
             <div class="first-line">
                 <label for="i-description">Description</label>
                 <span class="small">*required</span>
             </div>
-            <textarea rows="5" placeholder="Add description" id="i-description" class="form-control" #inputDescription required></textarea>
+            <textarea rows="5" value="{{item.description}}" placeholder="Add description" id="i-description" class="form-control" #inputDescription required></textarea>
         </div>
         <div class="info-duration">
-            <div class="first-line">
-                <label for="i-duration">Duration</label>
-                <span class="small">*required</span>
+            <div class="time-item">
+                <div class="first-line">
+                    <label for="i-duration">Duration</label>
+                    <span class="small">*required</span>
+                </div>
+                <input type="number" value="{{item.duration}}" id="i-duration" class="form-control" placeholder="minutes" #inputTime required>  
             </div>
-            <input type="number" id="i-duration" class="form-control" placeholder="minutes" #inputTime required>
+            <span class="duration">{{item.duration | hoursTime}}</span>
         </div>
         <div class="info-date">
             <div class="first-line">
                 <label for="i-date">Date</label>
                 <span class="small">*required</span>
             </div>
-            <input type="date" id="i-date" class="form-control" placeholder="MM/DD/YYYY" #inputDate required>
+            <input type="date" id="i-date" class="form-control" value="{{item.createDate | date:'yyyy-MM-dd'}}" #inputDate required>
         </div>
         <div class="info-authors">
             <div class="first-line">

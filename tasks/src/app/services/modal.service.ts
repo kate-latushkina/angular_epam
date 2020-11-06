@@ -8,7 +8,7 @@ import { Modal } from '../modal';
 export class ModalService {
 
   public isOpen: BehaviorSubject<Modal> = new BehaviorSubject<Modal>(new Modal())
-  public openModal(closeFn: () => void) {
+  public openModal(closeFn?: () => void) {
     const mod = new Modal()
     mod.isOpen = true;
     mod.closeFn = closeFn;

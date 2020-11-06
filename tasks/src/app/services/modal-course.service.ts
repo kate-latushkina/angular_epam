@@ -8,18 +8,18 @@ import { Modal } from '../modal';
 })
 export class ModalCourseService {
 
-  public courseInfo: BehaviorSubject<Modal> = new BehaviorSubject<Modal>(new Modal());
+  public isOpen: BehaviorSubject<Modal> = new BehaviorSubject<Modal>(new Modal());
 
-  openModal(course: ICourse) {
+  openModal(course?: ICourse) {
     const mod = new Modal()
     mod.course = course;
     mod.isOpen = true;
-    this.courseInfo.next(mod);
+    this.isOpen.next(mod);
     
   }
   closeModal() {
     const mod = new Modal();
     mod.isOpen = false;
-    this.courseInfo.next(mod);
+    this.isOpen.next(mod);
   }
 }

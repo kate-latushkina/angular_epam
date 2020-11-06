@@ -49,17 +49,16 @@ export class CoursesService {
 
   public createCourse() {
     console.log('create course')
-    // this.modalCourseService.openModal();
+    this.modalCourseService.openModal();
   }
 
   public getItem(item: ICourse) {
     this.modalCourseService.openModal(item);
-    console.log(item)
   }
 
   public updateItem() {
     console.log('save')
-    // this.modalCourseService.closeModal(false)
+    this.modalCourseService.closeModal()
     // this.courses.push() запушить данные
   }
 
