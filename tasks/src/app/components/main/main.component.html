@@ -1,14 +1,10 @@
-<main>
-    <div class="container">
-        <div class="search-panel">
-            <input type="text" placeholder="Text to search">
-            <button class="search">Search</button>
-        </div>
-        <div class="courses-section">
-            <app-list-courses></app-list-courses>
-            <app-list-courses></app-list-courses>
-            <app-list-courses></app-list-courses>
-            <button class="more">Load more</button>
-        </div>
+<main class="main"> 
+    <app-search (isTextEvent)="setValue($event)"></app-search>
+    <app-add-course></app-add-course>
+    <div class="courses-section">
+        <app-list-courses [isText]="isText"></app-list-courses>
+        <app-load></app-load>
     </div>
+    <app-modal-window></app-modal-window>
+    <app-course-modal></app-course-modal>
 </main>
