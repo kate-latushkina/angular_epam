@@ -7,11 +7,11 @@
         <div class="user-section" *ngIf="isAuth">
             <div class="login">
                 <img src="../../../assets/user-regular.svg" alt="user" class="icon">
-                <span>User login</span>
+                <span>{{userName}}</span>
             </div>
-            <div class="logout" (click)="authService.logout()">
+            <div class="logout" (click)="authService.logout()" routerLink="/">
                 <img src="../../../assets/sign-out-alt-solid.svg" alt="logout" class="icon">
-                <button class="logout-button" routerLink="/">Log off</button>
+                <button class="logout-button">Log off</button>
             </div>
         </div>
     </div>

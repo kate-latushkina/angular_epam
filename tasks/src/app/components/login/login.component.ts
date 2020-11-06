@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService} from '../../services/auth.service';
+import { Autentification } from '../../autentification'
 
 @Component({
   selector: 'app-login',
@@ -9,16 +10,18 @@ import { AuthService} from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
   public isDisabled: boolean = true;
-  isAuth: boolean;
+  public isAuth: boolean;
   constructor(public authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.authService.sharedAuth.subscribe(isAuth => this.isAuth = isAuth);
+    this.authService.isAuth.subscribe((user: Autentification) => {
+      this.isAuth = user.isAuth;
+    })
   }
 
   showUser(name, password) {
-    this.authService.isAuthenticated(true);
-    this.authService.getUserInfo(name, password)
+    this.authService.login(name, password);
+    
   }
   isDisabledButton(name, password) {
     if (name && password) {

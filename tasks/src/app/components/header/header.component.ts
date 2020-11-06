@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Autentification } from 'src/app/autentification';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,11 +9,16 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  isAuth: boolean;
+  public isAuth: boolean;
+  public userName: string;
+  public userPassword: number;
   constructor(public authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.authService.sharedAuth.subscribe(isAuth => this.isAuth = isAuth);
+    this.authService.isAuth.subscribe((user: Autentification) => {
+      this.isAuth = user.isAuth;
+      this.userName = user.firstName;
+      this.userPassword = user.password;
+    })
   }
-
 }

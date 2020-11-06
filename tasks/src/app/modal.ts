@@ -1,4 +1,3 @@
-import { title } from 'process';
 import { ICourse } from './interfaces/course';
 
 export class Modal {
