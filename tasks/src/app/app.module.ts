@@ -24,6 +24,7 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { CourseModalComponent } from './components/course-modal/course-modal.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { CourseModalComponent } from './components/course-modal/course-modal.com
     ModalWindowComponent,
     LoginComponent,
     CourseModalComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
