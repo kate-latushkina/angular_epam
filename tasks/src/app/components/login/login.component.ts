@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService} from '../../services/auth.service';
 import { Autentification } from '../../autentification'
 
@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   showUser(name, password) {
     this.authService.login(name, password);
-    
   }
   isDisabledButton(name, password) {
     if (name && password) {

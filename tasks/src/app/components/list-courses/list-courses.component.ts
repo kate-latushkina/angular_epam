@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-courses',
@@ -9,8 +10,8 @@ import { ICourse } from '../../interfaces/course';
   styleUrls: ['./list-courses.component.scss'],
 })
 export class ListCoursesComponent implements OnInit {
-
-  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
+  // public items: any = [];
+  constructor(public coursesService: CoursesService, public modalService: ModalService, private httpClient: HttpClient) {}
 
   @Input() isText: string ;
   @Input() item: ICourse;
@@ -31,5 +32,13 @@ export class ListCoursesComponent implements OnInit {
   public deleteItem(id: number) {
     this.modalService.openModal(this.coursesService.removeItem.bind(this.coursesService, id))
   }
+
+  // public getCourses(): void {
+  //   this.httpClient.get<ICourse[]>('http://localhost:3004/courses/')
+  //       .subscribe((items: ICourse[]) => {
+  //         this.items = items;
+  //         console.log(items);
+  //       });
+  // }
 
 }

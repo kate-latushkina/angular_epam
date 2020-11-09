@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +23,6 @@ import { CoursesService } from './services/courses.service';
 import { AuthService } from './services/auth.service';
 import { ModalService } from './services/modal.service';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { CourseModalComponent } from './components/course-modal/course-modal.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
@@ -53,6 +54,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     AppRoutingModule,
     FormsModule,
     NgbModule,
+    HttpClientModule
   ],
   providers: [
     CoursesService,
