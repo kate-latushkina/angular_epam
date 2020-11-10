@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-courses',
@@ -11,34 +10,54 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ListCoursesComponent implements OnInit {
 
-  constructor(public coursesService: CoursesService, public modalService: ModalService, private httpClient: HttpClient) {}
+  public pageCoursesList: number = 1;
+  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
   @Input() isText: string ;
   @Input() item: ICourse;
 
-  public courses;
+  public courses: ICourse[];
+  public responseFavotite: boolean;
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
-    this.isText = '';
+    // this.isText = '';
+    this.updateCourses(this.pageCoursesList)
+  }
+
+  public clickLoadMore() {
+    this.pageCoursesList++;
+    this.updateCourses(this.pageCoursesList);
+  }
+
+  public updateCourses(page: number) {
     this.coursesService
-    .getList()
-    .subscribe((response) => {
+    .getList(page, this.isText)
+    .subscribe((response: ICourse[]) => {
       this.courses = response
-      console.log(this.courses)
+      console.log(response)
+    })
+    // console.log(this.isText)
+  }
+
+  public makeFavorite(id: number) {
+    this.coursesService
+    .getItemById(id)
+    .subscribe((response) => {
+      // this.responseFavotite = response
+      console.log(this.responseFavotite)
     })
   }
 
-  public makeFavorite(id: number): void {
-    if (this.favorites.has(id)) {
-      this.favorites.delete(id);
-    } else {
-      this.favorites.add(id);
-    }
+  public openDeleteModal(id: number) {
+    this.modalService.openModal(this.deleteItem.bind(this, id))
   }
 
   public deleteItem(id: number) {
-    this.modalService.openModal(this.coursesService.removeItem.bind(this.coursesService, id))
+    this.coursesService
+    .removeItem(id)
+    .subscribe(() => {
+      this.courses = this.courses.filter(course => course.id !== id);
+    })
   }
-
 }

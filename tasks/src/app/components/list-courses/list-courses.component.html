@@ -1,3 +1,4 @@
 <div class="courses" >
-  <app-course (onFavorite)="makeFavorite($event)" (onDelete)="deleteItem($event)" [isFavorite]="favorites.has(item.id)" [item]='item' *ngFor='let item of courses | listFilter: isText'></app-course>
+  <app-course (onFavorite)="makeFavorite($event)" (onDelete)="openDeleteModal($event)" [item]='item' *ngFor='let item of courses'></app-course>
 </div>
+<app-load (click)="clickLoadMore()">Load more</app-load>

@@ -9,11 +9,24 @@ import { HttpClient } from '@angular/common/http';
 export class CoursesService {
 
   @Input() isModal: boolean;
+  public start: number = 0;
+  public countCourses: number = 3;
+
   constructor(public modalCourseService: ModalCourseService, private httpClient: HttpClient,) {}
 
-  public getList() {
-    return this.httpClient.get('http://localhost:3004/courses')
-    // return this.courses;
+  public getList(page: number = 1, textFragment?: string) {
+    const data = {
+      start: `${this.start}`, 
+      count: `${this.countCourses * page}`,
+    };
+    // if (textFragment) {
+    //   return this.httpClient.get('http://localhost:3004/courses', { params: {...data, textFragment}});
+    // }
+    return this.httpClient.get(`http://localhost:3004/courses`, {params: data})
+  }
+
+  public getItemById(id: number) {
+    return this.httpClient.get(`http://localhost:3004/courses/${id}`)
   }
 
   public createCourse() {
@@ -32,10 +45,6 @@ export class CoursesService {
   }
 
   public removeItem(id: number) {
-  //   this.courses.forEach((course, index) => {
-  //     if (course.id === id) {
-  //       this.courses.splice(index, 1);
-  //     }
-  //   })
+    return this.httpClient.delete(`http://localhost:3004/courses/${id}`)
   }
 }
