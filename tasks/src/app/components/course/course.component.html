@@ -1,8 +1,8 @@
-<div class="main-info" dateOfCreate [itemDate]="item.createDate">
+<div class="main-info" dateOfCreate [itemDate]="item.date">
   <div class="main-info-course">
     <div class="name-course">
-      <h4 class="course-title">{{item.title | uppercase}}</h4>
-      <svg (click)="makeFavorite()" [ngClass]="{'active': isFavorite}" aria-hidden="true" focusable="false"
+      <h4 class="course-title">{{item.name | uppercase}}</h4>
+      <svg (click)="makeFavorite()" [ngClass]="{'active': item.isTopRated}" aria-hidden="true" focusable="false"
         data-prefix="far" data-icon="star" class="svg-inline--fa fa-star fa-w-18" role="img"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
         <path
@@ -12,8 +12,8 @@
       </svg>
     </div>
     <div class="info-course">
-      <span class="duration">{{item.duration | hoursTime}}</span>
-      <span class="create-date">{{item.createDate | date:'dd MMM yyyy'}}</span>
+      <span class="duration">{{item.length | hoursTime}}</span>
+      <span class="create-date">{{item.date | date:'dd MMM yyyy'}}</span>
     </div>
   </div>
   <div class="description-course">

@@ -10,15 +10,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./list-courses.component.scss'],
 })
 export class ListCoursesComponent implements OnInit {
-  // public items: any = [];
+
   constructor(public coursesService: CoursesService, public modalService: ModalService, private httpClient: HttpClient) {}
 
   @Input() isText: string ;
   @Input() item: ICourse;
 
+  public courses;
+
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
     this.isText = '';
+    this.coursesService
+    .getList()
+    .subscribe((response) => {
+      this.courses = response
+      console.log(this.courses)
+    })
   }
 
   public makeFavorite(id: number): void {
@@ -32,13 +40,5 @@ export class ListCoursesComponent implements OnInit {
   public deleteItem(id: number) {
     this.modalService.openModal(this.coursesService.removeItem.bind(this.coursesService, id))
   }
-
-  // public getCourses(): void {
-  //   this.httpClient.get<ICourse[]>('http://localhost:3004/courses/')
-  //       .subscribe((items: ICourse[]) => {
-  //         this.items = items;
-  //         console.log(items);
-  //       });
-  // }
 
 }
