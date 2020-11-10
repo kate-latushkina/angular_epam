@@ -1,12 +1,12 @@
 <div class="modal-course" *ngIf="isOpen">
     <div class="modal-section">
-        <h5>Course/<u>{{item.title}}</u></h5>
+        <h5>Course/<u>{{item.name}}</u></h5>
         <div class="info-name">
             <div class="first-line">
                 <label for="i-title">Title</label>
                 <span class="small">*required</span>
             </div>
-            <input type="text" value="{{item.title}}" id="i-title" placeholder="Text input" class="form-control" #inputTitle required>
+            <input type="text" value="{{item.name}}" id="i-title" placeholder="Text input" class="form-control" #inputTitle required>
         </div>
         <div class="info-description">
             <div class="first-line">
@@ -21,23 +21,23 @@
                     <label for="i-duration">Duration</label>
                     <span class="small">*required</span>
                 </div>
-                <input type="number" value="{{item.duration}}" id="i-duration" class="form-control" placeholder="minutes" #inputTime required>  
+                <input type="number" value="{{item.length}}" id="i-duration" class="form-control" placeholder="minutes" #inputTime required>  
             </div>
-            <span class="duration">{{item.duration | hoursTime}}</span>
+            <span class="duration" *ngIf="item.length">{{item.length | hoursTime}}</span>
         </div>
         <div class="info-date">
             <div class="first-line">
                 <label for="i-date">Date</label>
                 <span class="small">*required</span>
             </div>
-            <input type="date" id="i-date" class="form-control" value="{{item.createDate | date:'yyyy-MM-dd'}}" #inputDate required>
+            <input type="date" id="i-date" class="form-control" value="{{item.date | date:'yyyy-MM-dd'}}" #inputDate required>
         </div>
         <div class="info-authors">
             <div class="first-line">
                 <label for="i-authors">Authors</label>
                 <span class="small">*required</span>
             </div>
-            <input type="text" id="i-authors" class="form-control" placeholder="Start typing" #inputAuthors required>
+            <input type="text" id="i-authors" value="{{item.authors}}" class="form-control" placeholder="Start typing" #inputAuthors required>
         </div>
         <div class="info-buttons">
             <button class="btn btn-secondary" (click)="modalCourseService.closeModal()">Cancel</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
   selector: 'app-load',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadComponent implements OnInit {
 
+  constructor(public coursesService: CoursesService) {}
+  
   public ngOnInit(): void {
   }
-  public getClick(): void {
-    console.log('click load button')
-  }
+
 }

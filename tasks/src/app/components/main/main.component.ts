@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ICourse } from 'src/app/interfaces/course';
-
 
 @Component({
   selector: 'app-main',
