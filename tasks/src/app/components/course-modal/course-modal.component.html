@@ -37,7 +37,10 @@
                 <label for="i-authors">Authors</label>
                 <span class="small">*required</span>
             </div>
-            <input type="text" id="i-authors" value="{{item.authors}}" class="form-control" placeholder="Start typing" #inputAuthors required>
+            <ul *ngIf="item.name">
+                <li *ngFor="let author of item.authors">{{author.name}} {{author.lastName}}</li>
+            </ul>
+            <input type="text" id="i-authors" class="form-control" placeholder="Start typing" #inputAuthors required>
         </div>
         <div class="info-buttons">
             <button class="btn btn-secondary" (click)="modalCourseService.closeModal()">Cancel</button>

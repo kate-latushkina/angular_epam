@@ -12,6 +12,7 @@ export class Modal {
         authors: {
             id: null,
             name: '',
+            lastName: ''
         },
         isTopRated: false
     };
