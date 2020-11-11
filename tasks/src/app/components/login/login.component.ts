@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
 
   showUser(name, password) {
     this.authService
-    .login(name, password).pipe(switchMap(token => {
+    .checkUser(name, password).pipe(switchMap(token => {
       return this.httpClient.post('http://localhost:3004/auth/userinfo', token).pipe(
-        tap(user => console.log(user)),
+        tap(() => this.authService.login(name, password)),
         tap(() => this.router.navigate(['/main'])))
     }), catchError(error => {
       this.isError = true;

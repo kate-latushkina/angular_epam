@@ -15,7 +15,6 @@ export class ModalCourseService {
     mod.course = course;
     mod.isOpen = true;
     this.isOpen.next(mod);
-    
   }
   closeModal() {
     const mod = new Modal();
