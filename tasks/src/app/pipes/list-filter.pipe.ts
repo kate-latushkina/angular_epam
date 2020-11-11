@@ -10,7 +10,7 @@ export class ListFilterPipe implements PipeTransform {
     if (value) {
       const corsesCopy: ICourse[] = [...courses];
       const lowercasedVal: string = value.toLowerCase();
-      return corsesCopy.filter((course: ICourse) => course.title.toLowerCase().includes(lowercasedVal))
+      return corsesCopy.filter((course: ICourse) => course.name.toLowerCase().includes(lowercasedVal))
     } else {
       return courses;
     }

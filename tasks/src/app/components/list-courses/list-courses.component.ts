@@ -13,7 +13,7 @@ export class ListCoursesComponent implements OnInit {
   public pageCoursesList: number = 1;
   constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
-  @Input() isText: string ;
+  @Input() isText: string;
   @Input() item: ICourse;
 
   public courses: ICourse[];
@@ -21,7 +21,6 @@ export class ListCoursesComponent implements OnInit {
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
-    // this.isText = '';
     this.updateCourses(this.pageCoursesList)
   }
 
@@ -30,14 +29,13 @@ export class ListCoursesComponent implements OnInit {
     this.updateCourses(this.pageCoursesList);
   }
 
-  public updateCourses(page: number) {
+  public updateCourses(page: number, text?: string) {
     this.coursesService
-    .getList(page, this.isText)
+    .getList(page)
     .subscribe((response: ICourse[]) => {
       this.courses = response
       console.log(response)
     })
-    // console.log(this.isText)
   }
 
   public makeFavorite(id: number) {

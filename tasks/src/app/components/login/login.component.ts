@@ -5,7 +5,7 @@ import { catchError, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import { AuthService} from '../../services/auth.service';
-import { Autentification } from '../../autentification'
+import { Autentification } from '../../classes/autentification'
 
 @Component({
   selector: 'app-login',

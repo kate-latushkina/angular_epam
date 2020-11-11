@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalCourseService } from '../../services/modal-course.service';
 import { CoursesService } from '../../services/courses.service';
-import { Modal } from 'src/app/modal';
+import { Modal } from 'src/app/classes/modal';
 import { ICourse } from 'src/app/interfaces/course';
 
 @Component({

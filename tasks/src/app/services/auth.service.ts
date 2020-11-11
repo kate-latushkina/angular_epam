@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Autentification } from '../autentification';
+import { Autentification } from '../classes/autentification';
 import { HttpClient } from '@angular/common/http';
 // import { UserEntity } from '../interfaces/user';
 @Injectable({

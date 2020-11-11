@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICourse } from '../../interfaces/course';
 import { ModalCourseService } from '../../services/modal-course.service';
-import { Autentification } from '../../autentification'
+import { Autentification } from '../../classes/autentification'
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({

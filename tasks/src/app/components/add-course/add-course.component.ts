@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Modal } from 'src/app/modal';
+import { Modal } from 'src/app/classes/modal';
 import { CoursesService } from '../../services/courses.service';
 import { ModalCourseService } from '../../services/modal-course.service';
 
