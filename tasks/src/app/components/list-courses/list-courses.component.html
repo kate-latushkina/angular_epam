@@ -1,4 +1,11 @@
-<div class="courses" >
-  <app-course (onFavorite)="makeFavorite($event)" (onDelete)="openDeleteModal($event)" [item]='item' *ngFor='let item of courses'></app-course>
+<div class="courses">
+  <app-search (isTextEvent)="searchCourses($event)"></app-search>
+  <app-add-course></app-add-course>
+  <app-course 
+  (onFavorite)="makeFavorite($event)" 
+  (onDelete)="openDeleteModal($event)" 
+  [item]='item'
+  *ngFor='let item of courses'>
+  </app-course>
 </div>
-<app-load (click)="clickLoadMore()">Load more</app-load>
+<app-load (click)="clickLoadMore(isTextEvent)">Load more</app-load>

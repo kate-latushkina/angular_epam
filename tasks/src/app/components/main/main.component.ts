@@ -7,9 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class MainComponent {
 
-  public isText: string;
-  public setValue(value: string) {
-    this.isText = value;
-  }
-
 }

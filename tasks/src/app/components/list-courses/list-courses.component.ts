@@ -11,9 +11,10 @@ import { ICourse } from '../../interfaces/course';
 export class ListCoursesComponent implements OnInit {
 
   public pageCoursesList: number = 1;
+  public inputText: string;
   constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
-  @Input() isText: string;
+  @Input() isTextEvent: string;
   @Input() item: ICourse;
 
   public courses: ICourse[];
@@ -26,16 +27,22 @@ export class ListCoursesComponent implements OnInit {
 
   public clickLoadMore() {
     this.pageCoursesList++;
-    this.updateCourses(this.pageCoursesList);
+    this.updateCourses(this.pageCoursesList, this.inputText);
   }
 
   public updateCourses(page: number, text?: string) {
     this.coursesService
-    .getList(page)
+    .getList(page, text)
     .subscribe((response: ICourse[]) => {
       this.courses = response
       console.log(response)
     })
+  }
+
+  public searchCourses(text: string) {
+    this.pageCoursesList = 1;
+    this.inputText = text;
+    this.updateCourses(this.pageCoursesList, text)
   }
 
   public makeFavorite(id: number) {

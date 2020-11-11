@@ -19,9 +19,9 @@ export class CoursesService {
       start: `${this.start}`, 
       count: `${this.countCourses * page}`,
     };
-    // if (textFragment) {
-    //   return this.httpClient.get('http://localhost:3004/courses', { params: {...data, textFragment}});
-    // }
+    if (textFragment) {
+      return this.httpClient.get('http://localhost:3004/courses', { params: {...data, textFragment}});
+    }
     return this.httpClient.get(`http://localhost:3004/courses`, {params: data})
   }
 

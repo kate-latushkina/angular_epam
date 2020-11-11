@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ICourse } from 'src/app/interfaces/course';
+import { CoursesService } from 'src/app/services/courses.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +16,6 @@ export class SearchComponent implements OnInit {
 
   public getInputText(value: string) {
     this.isTextEvent.emit(value);
-    this.inputValue = '';
   }
 
 }
