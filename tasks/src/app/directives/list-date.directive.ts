@@ -19,7 +19,7 @@ export class DateDirective implements AfterViewInit {
         if (isYearAgo === 'year' || isYearAgo === 'years') {
             this.el.nativeElement.style.border = '1px solid black';
         } else {
-            if (numDays < 14 && numDays > 0) {
+            if (numDays < 14 && numDays > 0 || isYearAgo == 'hours') {
                 this.el.nativeElement.style.border = '3px solid green';
             } else if (!numDays) {
                 this.el.nativeElement.style.border = '3px solid blue';

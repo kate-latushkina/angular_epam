@@ -19,6 +19,7 @@ export class ListCoursesComponent implements OnInit {
 
   public courses: ICourse[];
   public responseFavotite: boolean;
+  public isFound: boolean;
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
@@ -34,14 +35,20 @@ export class ListCoursesComponent implements OnInit {
     this.coursesService
     .getList(page, text)
     .subscribe((response: ICourse[]) => {
-      this.courses = response
-      console.log(response)
+      if (response.length == 0) {
+        this.isFound = false;
+        this.courses = []
+      } else {
+        this.isFound = true;
+        this.courses = response
+      }
     })
   }
 
   public searchCourses(text: string) {
     this.pageCoursesList = 1;
     this.inputText = text;
+    console.log(this.inputText)
     this.updateCourses(this.pageCoursesList, text)
   }
 

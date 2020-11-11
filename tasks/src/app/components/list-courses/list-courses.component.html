@@ -8,4 +8,5 @@
   *ngFor='let item of courses'>
   </app-course>
 </div>
-<app-load (click)="clickLoadMore()">Load more</app-load>
+<div *ngIf="!isFound" class="not-courses">Not courses</div>
+<app-load (click)="clickLoadMore()" *ngIf="isFound">Load more</app-load>

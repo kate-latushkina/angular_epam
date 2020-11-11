@@ -1,4 +1,4 @@
-<div class="modal-course" *ngIf="isOpen">
+<form class="modal-course" *ngIf="isOpen" #form="ngForm" (ngSubmit)="saveCourse(form)">
     <div class="modal-section">
         <h5>Course/<u>{{item.name}}</u></h5>
         <div class="info-name">
@@ -6,14 +6,14 @@
                 <label for="i-title">Title</label>
                 <span class="small">*required</span>
             </div>
-            <input type="text" value="{{item.name}}" id="i-title" placeholder="Text input" class="form-control" #inputTitle required>
+            <input type="text" id="i-title" placeholder="Text input" class="form-control" [ngModel]='defaultName' name="name" required>
         </div>
         <div class="info-description">
             <div class="first-line">
                 <label for="i-description">Description</label>
                 <span class="small">*required</span>
             </div>
-            <textarea rows="5" value="{{item.description}}" placeholder="Add description" id="i-description" class="form-control" #inputDescription required></textarea>
+            <textarea rows="5" placeholder="Add description" id="i-description" class="form-control" [ngModel]='defaultDescription' name="description" required></textarea>
         </div>
         <div class="info-duration">
             <div class="time-item">
@@ -21,7 +21,7 @@
                     <label for="i-duration">Duration</label>
                     <span class="small">*required</span>
                 </div>
-                <input type="number" value="{{item.length}}" id="i-duration" class="form-control" placeholder="minutes" #inputTime required>  
+                <input type="number" id="i-duration" class="form-control" placeholder="minutes" [ngModel]="defaultLength" name="length" required>  
             </div>
             <span class="duration" *ngIf="item.length">{{item.length | hoursTime}}</span>
         </div>
@@ -30,7 +30,7 @@
                 <label for="i-date">Date</label>
                 <span class="small">*required</span>
             </div>
-            <input type="date" id="i-date" class="form-control" value="{{item.date | date:'yyyy-MM-dd'}}" #inputDate required>
+            <input type="date" id="i-date" class="form-control" [ngModel]="defaultDate | date:'yyyy-MM-dd'" name="date" required>
         </div>
         <div class="info-authors">
             <div class="first-line">
@@ -40,11 +40,11 @@
             <ul *ngIf="item.name">
                 <li *ngFor="let author of item.authors">{{author.name}} {{author.lastName}}</li>
             </ul>
-            <input type="text" id="i-authors" class="form-control" placeholder="Start typing" #inputAuthors required>
+            <input type="text" id="i-authors" class="form-control" placeholder="Start typing" ngModel name="authors" required>
         </div>
         <div class="info-buttons">
             <button class="btn btn-secondary" (click)="modalCourseService.closeModal()">Cancel</button>
-            <button class="btn btn-success" (click)="coursesService.updateItem()">Save</button>
+            <button class="btn btn-success" type="submit">Save</button>
         </div>
     </div>
-</div>
+</form>

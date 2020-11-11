@@ -30,18 +30,17 @@ export class CoursesService {
   }
 
   public createCourse() {
-    console.log('create course')
     this.modalCourseService.openModal();
   }
 
-  public getItem(item: ICourse) {
-    this.modalCourseService.openModal(item);
+  public updateItem(itemData: ICourse, id: number) {
+    this.modalCourseService.closeModal();
+    return this.httpClient.patch(`http://localhost:3004/courses/${id}`, itemData)
   }
 
-  public updateItem() {
-    console.log('save')
-    this.modalCourseService.closeModal()
-    // this.courses.push() запушить данные
+  public saveNewItem(itemData: ICourse) {
+    this.modalCourseService.closeModal();
+    return this.httpClient.post(`http://localhost:3004/courses`, itemData)
   }
 
   public removeItem(id: number) {
