@@ -2,8 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
-import { switchMap, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-courses',
@@ -14,7 +12,7 @@ export class ListCoursesComponent implements OnInit {
 
   public pageCoursesList: number = 1;
   public inputText: string;
-  constructor(public coursesService: CoursesService, public modalService: ModalService, private httpClient: HttpClient) {}
+  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
   @Input() isTextEvent: string;
   @Input() item: ICourse;

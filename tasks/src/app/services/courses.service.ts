@@ -41,4 +41,8 @@ export class CoursesService {
   public removeItem(id: number) {
     return this.httpClient.delete(`http://localhost:3004/courses/${id}`)
   }
+
+  public getAuthors() {
+    return this.httpClient.get(`http://localhost:3004/authors`)
+  }
 }

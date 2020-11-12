@@ -18,6 +18,7 @@ export class CourseModalComponent implements OnInit {
   public defaultDescription: string;
   public defaultLength: number;
   public defaultDate: Date;
+  // public allAuthors;
   constructor(public modalCourseService: ModalCourseService, public coursesService: CoursesService) { }
 
   public ngOnInit(): void {
@@ -29,7 +30,7 @@ export class CourseModalComponent implements OnInit {
         this.defaultDescription = this.item.description
         this.defaultLength = this.item.length
         this.defaultDate = this.item.date
-      }
+      } 
     });
   }
   
@@ -49,4 +50,13 @@ export class CourseModalComponent implements OnInit {
       .subscribe()
     }
   }
+
+  // public getAllAuthors() {
+  //   this.coursesService
+  //     .getAuthors()
+  //     .subscribe(authors => {
+  //       this.allAuthors = authors
+  //       console.log(authors)
+  //     })
+  // }
 }
