@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { CourseModalComponent } from './course-modal.component';
 
 describe('CourseModalComponent', () => {
@@ -8,7 +8,8 @@ describe('CourseModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CourseModalComponent ]
+      declarations: [ CourseModalComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   });
