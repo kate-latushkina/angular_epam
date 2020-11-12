@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  showUser(name, password) {
+  showUser(name: string, password: number) {
     this.authService
     .checkUser(name, password).pipe(switchMap(token => {
       return this.httpClient.post('http://localhost:3004/auth/userinfo', token).pipe(
@@ -38,11 +38,5 @@ export class LoginComponent implements OnInit {
       this.isError = true;
       return of(error)
     })).subscribe()
-  }
-
-  isDisabledButton(name, password) {
-    if (name && password) {
-      this.isDisabled = false;
-    }
   }
 }

@@ -48,7 +48,6 @@ export class ListCoursesComponent implements OnInit {
   public searchCourses(text: string) {
     this.pageCoursesList = 1;
     this.inputText = text;
-    console.log(this.inputText)
     this.updateCourses(this.pageCoursesList, text)
   }
 
