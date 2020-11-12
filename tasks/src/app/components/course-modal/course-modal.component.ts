@@ -42,6 +42,7 @@ export class CourseModalComponent implements OnInit {
       this.coursesService
       .updateItem(form.value, this.item.id)
       .subscribe()
+      this.modalCourseService.closeModal();
     } else {
       this.coursesService
       .saveNewItem(form.value)

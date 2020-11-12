@@ -25,16 +25,11 @@ export class CoursesService {
     return this.httpClient.get(`http://localhost:3004/courses`, {params: data})
   }
 
-  public getItemById(id: number) {
-    return this.httpClient.get(`http://localhost:3004/courses/${id}`)
-  }
-
   public createCourse() {
     this.modalCourseService.openModal();
   }
 
   public updateItem(itemData: ICourse, id: number) {
-    this.modalCourseService.closeModal();
     return this.httpClient.patch(`http://localhost:3004/courses/${id}`, itemData)
   }
 

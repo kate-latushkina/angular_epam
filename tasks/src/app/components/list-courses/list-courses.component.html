@@ -2,7 +2,7 @@
   <app-search (isTextEvent)="searchCourses($event)"></app-search>
   <app-add-course></app-add-course>
   <app-course 
-  (onFavorite)="makeFavorite($event)" 
+  (onFavorite)="makeFavorite(item, $event)" 
   (onDelete)="openDeleteModal($event)" 
   [item]='item'
   *ngFor='let item of courses'>

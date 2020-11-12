@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
+import { switchMap, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list-courses',
@@ -12,12 +14,13 @@ export class ListCoursesComponent implements OnInit {
 
   public pageCoursesList: number = 1;
   public inputText: string;
-  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
+  constructor(public coursesService: CoursesService, public modalService: ModalService, private httpClient: HttpClient) {}
 
   @Input() isTextEvent: string;
   @Input() item: ICourse;
 
   public courses: ICourse[];
+  public course: ICourse;
   public responseFavotite: boolean;
   public isFound: boolean;
 
@@ -51,13 +54,11 @@ export class ListCoursesComponent implements OnInit {
     this.updateCourses(this.pageCoursesList, text)
   }
 
-  public makeFavorite(id: number) {
+  public makeFavorite(lesson: ICourse, id: number) {
+    lesson.isTopRated = !lesson.isTopRated
     this.coursesService
-    .getItemById(id)
-    .subscribe((response) => {
-      // this.responseFavotite = response
-      console.log(this.responseFavotite)
-    })
+    .updateItem(lesson, id)
+    .subscribe()
   }
 
   public openDeleteModal(id: number) {
