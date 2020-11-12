@@ -1,0 +1,9 @@
+<div class="modal-window" *ngIf="isOpen">
+  <div class="modal-section" >
+    <p class="modal-text">Are you sure?</p>
+    <div class="buttons">
+      <button class="btn btn-danger" (click)="modalService.closeModal()">Cancel</button>
+      <button class="btn btn-success" (click)="close()">OK</button>
+    </div>
+  </div>
+</div>

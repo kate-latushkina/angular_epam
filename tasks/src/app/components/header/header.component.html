@@ -2,11 +2,17 @@
     <div class="container">
         <div class="logo-section">
             <img src="../../../assets/play-button.png" alt="play-button" [class.logo]='true'>
-            <h2>Video course</h2>
+            <h5 class="title-name">Video course</h5>
         </div>
-        <div class="user-section">
-            <span class="login">Log In</span>
-            <span class="logout">Log Out</span>
+        <div class="user-section" *ngIf="isAuth">
+            <div class="login">
+                <img src="../../../assets/user-regular.svg" alt="user" class="icon">
+                <span>User login</span>
+            </div>
+            <div class="logout" (click)="authService.logout()">
+                <img src="../../../assets/sign-out-alt-solid.svg" alt="logout" class="icon">
+                <button class="logout-button" routerLink="/">Log off</button>
+            </div>
         </div>
     </div>
 </header>
