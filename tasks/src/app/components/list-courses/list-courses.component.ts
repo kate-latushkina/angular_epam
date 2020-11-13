@@ -1,26 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CoursesService } from '../../services/courses.service';
+import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
 
 @Component({
   selector: 'app-list-courses',
   templateUrl: './list-courses.component.html',
-  styleUrls: ['./list-courses.component.css']
+  styleUrls: ['./list-courses.component.scss'],
 })
 export class ListCoursesComponent implements OnInit {
 
+  public pageCoursesList: number = 1;
+  public inputText: string;
+  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
+
+  @Input() isTextEvent: string;
+  @Input() item: ICourse;
+
+  public courses: ICourse[];
+  public course: ICourse;
+  public responseFavotite: boolean;
+  public isFound: boolean;
+
+  public favorites: Set<number> = new Set();
   public ngOnInit(): void {
+    this.updateCourses(this.pageCoursesList)
   }
 
-  public getCourses(): ICourse[] {
-    return [{
-      id: 1,
-      title: 'Video course 1',
-      createDate: '26/10/2020',
-      duration: '107 min',
-      description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-      sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    }]
+  public clickLoadMore() {
+    this.pageCoursesList++;
+    this.updateCourses(this.pageCoursesList, this.inputText);
+  }
+
+  public updateCourses(page: number, text?: string) {
+    this.coursesService
+    .getList(page, text)
+    .subscribe((response: ICourse[]) => {
+      if (response.length == 0) {
+        this.isFound = false;
+        this.courses = []
+      } else {
+        this.isFound = true;
+        this.courses = response
+      }
+    })
+  }
+
+  public searchCourses(text: string) {
+    this.pageCoursesList = 1;
+    this.inputText = text;
+    this.updateCourses(this.pageCoursesList, text)
+  }
+
+  public makeFavorite(lesson: ICourse, id: number) {
+    lesson.isTopRated = !lesson.isTopRated
+    this.coursesService
+    .updateItem(lesson, id)
+    .subscribe()
+  }
+
+  public openDeleteModal(id: number) {
+    this.modalService.openModal(this.deleteItem.bind(this, id))
+  }
+
+  public deleteItem(id: number) {
+    this.coursesService
+    .removeItem(id)
+    .subscribe(() => {
+      this.courses = this.courses.filter(course => course.id !== id);
+    })
   }
 }
