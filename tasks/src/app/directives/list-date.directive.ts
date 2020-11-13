@@ -1,5 +1,6 @@
 import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 import * as moment from 'moment';
+import { ICourse } from '../interfaces/course';
 
 @Directive({
     selector: '[dateOfCreate]'
@@ -7,12 +8,12 @@ import * as moment from 'moment';
 
 export class DateDirective implements AfterViewInit {
 
-    @Input() itemDate: string;
+    @Input() itemDate: ICourse;
     constructor(public el: ElementRef) {
     }
 
     public ngAfterViewInit(): void {
-        const itemValue = this.itemDate;
+        const itemValue = this.itemDate.date;
         const howManyDays = moment(itemValue).fromNow();
         const numDays = +howManyDays.split(' ')[0];
         const isYearAgo = howManyDays.split(' ')[1]
