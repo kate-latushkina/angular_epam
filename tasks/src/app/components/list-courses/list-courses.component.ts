@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CoursesService } from '../../services/courses.service';
 import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
-import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { distinctUntilChanged, skipWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-courses',
@@ -16,7 +16,6 @@ export class ListCoursesComponent implements OnInit {
   public inputText: string;
   constructor(public coursesService: CoursesService, public modalService: ModalService) {}
 
-  @Input() searchText$: Subject<string>;
   @Input() item: ICourse;
 
   public courses: ICourse[];
@@ -26,6 +25,11 @@ export class ListCoursesComponent implements OnInit {
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
+    this.coursesService.text$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      skipWhile(name => name.length < 3))
+      .subscribe(text => this.updateCourses(this.pageCoursesList, text))
     this.updateCourses(this.pageCoursesList);
   }
 
@@ -46,14 +50,6 @@ export class ListCoursesComponent implements OnInit {
         this.courses = response
       }
     })
-  }
-
-  public searchCourses(text: string) {
-    // this.pageCoursesList = 1;
-    // this.inputText = text;
-    // this.updateCourses(this.pageCoursesList, text)
-    // console.log(this.searchText$)
-    this.coursesService.search(text)
   }
 
   public makeFavorite(lesson: ICourse, id: number) {

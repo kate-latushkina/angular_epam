@@ -1,5 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import {CoursesService} from '../../services/courses.service';
 
 @Component({
   selector: 'app-search',
@@ -9,12 +9,8 @@ import { Observable, Subject } from 'rxjs';
 export class SearchComponent implements OnInit {
 
   public inputValue: string;
-  // @Output() searchText$ = new Subject<string>();
-  public searchText$ = new Subject<string>();
-  public ngOnInit(): void {
-  }
 
-  public search(value: Observable<string>) {
-    this.searchText$.next(value);
+  constructor (public coursesService: CoursesService) {}
+  public ngOnInit(): void {
   }
 }

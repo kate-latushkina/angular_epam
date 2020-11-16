@@ -2,8 +2,7 @@ import { Injectable, Input } from '@angular/core';
 import { ICourse } from '../interfaces/course';
 import { ModalCourseService } from './modal-course.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,7 @@ export class CoursesService {
   @Input() isModal: boolean;
   public start: number = 0;
   public countCourses: number = 3;
-  public results: any;
+  public text$: Subject<string> = new Subject;
 
   constructor(public modalCourseService: ModalCourseService, private httpClient: HttpClient,) {}
 
@@ -30,13 +29,6 @@ export class CoursesService {
 
   public createCourse() {
     this.modalCourseService.openModal();
-  }
-
-  public search(terms: Observable<string>) {
-    return terms.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
-      switchMap(term => this.getList(1, term)));
   }
 
   public updateItem(itemData: ICourse, id: number) {
