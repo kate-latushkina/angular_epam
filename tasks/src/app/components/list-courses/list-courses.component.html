@@ -1,5 +1,5 @@
 <div class="courses">
-  <app-search (isTextEvent)="searchCourses($event)"></app-search>
+  <app-search (searchText$)="searchCourses($event)"></app-search>
   <app-add-course></app-add-course>
   <app-course 
   (onFavorite)="makeFavorite(item, $event)" 

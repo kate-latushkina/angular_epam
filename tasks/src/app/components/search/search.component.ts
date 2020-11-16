@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ICourse } from 'src/app/interfaces/course';
-import { CoursesService } from 'src/app/services/courses.service';
+import { Component, OnInit, Output } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -10,12 +9,12 @@ import { CoursesService } from 'src/app/services/courses.service';
 export class SearchComponent implements OnInit {
 
   public inputValue: string;
-  @Output() isTextEvent = new EventEmitter<string>();
+  // @Output() searchText$ = new Subject<string>();
+  public searchText$ = new Subject<string>();
   public ngOnInit(): void {
   }
 
-  public getInputText(value: string) {
-    this.isTextEvent.emit(value);
+  public search(value: Observable<string>) {
+    this.searchText$.next(value);
   }
-
 }
