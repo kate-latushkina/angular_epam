@@ -44,7 +44,6 @@ export class ListCoursesComponent implements OnInit {
 
   public updateCourses(page: number, text?: string) {
     this.loading = this.authService.setLoading();
-    console.log(this.loading)
     this.coursesService
     .getList(page, text)
     .subscribe((response: ICourse[]) => {
