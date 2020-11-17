@@ -26,6 +26,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CourseModalComponent } from './components/course-modal/course-modal.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { TokenInterceptor } from './interceptors/token.interseptop';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { TokenInterceptor } from './interceptors/token.interseptop';
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [
     CoursesService,

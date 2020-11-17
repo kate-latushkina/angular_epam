@@ -18,4 +18,5 @@
     <input type="password" class="form-control" placeholder="Enter password" required #inputUserPassword ngModel name="password">
   </div>
   <button class="btn btn-success" [disabled]="!authForm.valid" type="submit">Login</button>
+  <ngx-loading [show]="loading"></ngx-loading>
 </form>

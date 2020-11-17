@@ -11,6 +11,7 @@ export class AuthService {
 
   public isAuth: BehaviorSubject<Autentification> = new BehaviorSubject<Autentification>(new Autentification());
   public token = null;
+  public loading = false;
   constructor(private httpClient: HttpClient) {}
 
   public login(name: string, password: number) {
@@ -23,6 +24,12 @@ export class AuthService {
 
   public isAuthentication() {
     return this.isAuth;
+  }
+
+  public setLoading() {
+    this.loading = !this.loading;
+    console.log(this.loading)
+    return this.loading
   }
 
   public checkUser(name: string, password: number) {

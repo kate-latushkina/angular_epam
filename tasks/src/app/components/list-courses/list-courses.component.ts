@@ -4,6 +4,7 @@ import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged, skipWhile } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-list-courses',
@@ -14,7 +15,9 @@ export class ListCoursesComponent implements OnInit {
 
   public pageCoursesList: number = 1;
   public inputText: string;
-  constructor(public coursesService: CoursesService, public modalService: ModalService) {}
+  constructor(public coursesService: CoursesService, 
+    public modalService: ModalService,
+    public authService: AuthService) {}
 
   @Input() item: ICourse;
 
@@ -22,6 +25,7 @@ export class ListCoursesComponent implements OnInit {
   public course: ICourse;
   public responseFavotite: boolean;
   public isFound: boolean;
+  public loading: boolean = false;
 
   public favorites: Set<number> = new Set();
   public ngOnInit(): void {
@@ -39,15 +43,19 @@ export class ListCoursesComponent implements OnInit {
   }
 
   public updateCourses(page: number, text?: string) {
+    this.loading = this.authService.setLoading();
+    console.log(this.loading)
     this.coursesService
     .getList(page, text)
     .subscribe((response: ICourse[]) => {
       if (response.length == 0) {
         this.isFound = false;
-        this.courses = []
+        this.courses = [];
+        this.loading = this.authService.setLoading();
       } else {
         this.isFound = true;
-        this.courses = response
+        this.courses = response;
+        this.loading = this.authService.setLoading();
       }
     })
   }
@@ -64,10 +72,12 @@ export class ListCoursesComponent implements OnInit {
   }
 
   public deleteItem(id: number) {
+    this.loading = this.authService.setLoading();
     this.coursesService
     .removeItem(id)
     .subscribe(() => {
       this.courses = this.courses.filter(course => course.id !== id);
+      this.loading = this.authService.setLoading();
     })
   }  
 }

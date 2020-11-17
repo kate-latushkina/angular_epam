@@ -1,8 +1,7 @@
 <div class="courses">
-  <app-search (searchText$)="searchCourses($event)"></app-search>
+  <app-search></app-search>
   <app-add-course></app-add-course>
-  <app-course 
-  (onFavorite)="makeFavorite(item, $event)" 
+  <app-course (onFavorite)="makeFavorite(item, $event)" 
   (onDelete)="openDeleteModal($event)" 
   [item]='item'
   *ngFor='let item of courses'>
@@ -10,3 +9,4 @@
 </div>
 <div *ngIf="!isFound" class="not-courses">Not courses</div>
 <app-load (click)="clickLoadMore()" *ngIf="isFound">Load more</app-load>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>
