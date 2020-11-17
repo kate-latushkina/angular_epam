@@ -28,7 +28,6 @@ export class AuthService {
 
   public setLoading() {
     this.loading = !this.loading;
-    console.log(this.loading)
     return this.loading
   }
 

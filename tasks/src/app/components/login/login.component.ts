@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         tap(() => this.authService.login(name, password)),
         tap(() => {
           this.router.navigate(['/main']);
+          this.loading = this.authService.setLoading();
         }))
     }), catchError(error => {
       this.isError = true;
