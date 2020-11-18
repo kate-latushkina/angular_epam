@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,8 +26,11 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
 import { LoginComponent } from './components/login/login.component';
 import { CourseModalComponent } from './components/course-modal/course-modal.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { TokenInterceptor } from './interceptors/token.interseptop';
+import { TokenInterceptor } from './interceptors/token.interseptor';
 import { NgxLoadingModule } from 'ngx-loading';
+import { CourseReducer } from './state/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { CourseEffect } from './state/effects';
 
 
 @NgModule({
@@ -59,8 +60,8 @@ import { NgxLoadingModule } from 'ngx-loading';
     NgbModule,
     HttpClientModule,
     NgxLoadingModule.forRoot({}),
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreModule.forRoot({course: CourseReducer}),
+    EffectsModule.forRoot([CourseEffect])
   ],
   providers: [
     CoursesService,
