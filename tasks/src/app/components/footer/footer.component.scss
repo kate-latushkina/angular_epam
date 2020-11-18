@@ -1,12 +1,13 @@
+@import '../../../colors';
 .footer {
     width: 100%;
-    background-color: rgb(58, 58, 58);
+    background-color: $background-grey;
     position: fixed;
     bottom: 0;
     left: 0;
-    color: white;
+    color: $text-white;
 }
-.container {
+.my-container {
     display: flex;
     justify-content: flex-end;
 }
