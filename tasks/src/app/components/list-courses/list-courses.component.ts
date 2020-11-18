@@ -7,9 +7,8 @@ import { distinctUntilChanged, skipWhile } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/app.state';
-import { LoadCoursesAction } from 'src/app/state/actions';
+import { DeleteCourseAction, LoadCoursesAction, UpdateCourseAction } from 'src/app/state/actions';
 import { Subscription } from 'rxjs';
-import { stat } from 'fs';
 
 @Component({
   selector: 'app-list-courses',
@@ -23,6 +22,10 @@ export class ListCoursesComponent implements OnInit {
 
   public pageCoursesList: number = 1;
   public inputText: string;
+  @Input() item: ICourse;
+
+  public isFound: boolean;
+  public loading: boolean = false;
 
   constructor(public coursesService: CoursesService, 
     public modalService: ModalService,
@@ -33,55 +36,44 @@ export class ListCoursesComponent implements OnInit {
       .select(state => state.course.courses)
       .subscribe((newCoursesList) => {
         if (newCoursesList.length === 0) {
+          this.loading = this.authService.setLoading(true);
           this.courseList = [];
           this.isFound = false;
-          this.loading = this.authService.setLoading();
         } else {
           this.courseList = newCoursesList;
-          this.loading = this.authService.setLoading();
-          console.log(this.loading)
           this.isFound = true;
+          this.loading = this.authService.setLoading(false);
         }
       });
     }
 
-  @Input() item: ICourse;
-
-  public courses: ICourse[];
-
-  public responseFavotite: boolean;
-  public isFound: boolean;
-  public loading: boolean = false;
-
-
-  public favorites: Set<number> = new Set();
   public ngOnInit(): void {
-    // this.coursesService.text$.pipe(
-    //   debounceTime(500),
-    //   distinctUntilChanged(),
-    //   skipWhile(name => name.length < 3))
-    //   .subscribe(text => this.updateCourses(this.pageCoursesList, text))
-    // this.updateCourses(this.pageCoursesList);
-    
+    this.coursesService.text$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      skipWhile(name => name.length < 3))
+      .subscribe(text => {
+        this.loadCourses(text)
+      })
     this.loadCourses()
   }
 
   public loadCourses(textFragment?: string): void {
-    const { pageCoursesList } = this;
+    this.loading = this.authService.setLoading(true);
+    const pageCoursesList = this.pageCoursesList;
     this.store.dispatch(new LoadCoursesAction({pageCoursesList, textFragment}));
   }
 
   public clickLoadMore() {
     this.pageCoursesList++;
     this.loadCourses()
-    this.loading = this.authService.setLoading();
   }
 
-  public makeFavorite(lesson: ICourse, id: number) {
-    lesson.isTopRated = !lesson.isTopRated
-    this.coursesService
-    .updateItem(lesson, id)
-    .subscribe()
+  public makeFavorite(newCourse: ICourse) {
+    const id = newCourse.id;
+    const course = Object.assign({}, newCourse)
+    course.isTopRated = !course.isTopRated
+    this.store.dispatch(new UpdateCourseAction({course, id}));
   }
 
   public openDeleteModal(id: number) {
@@ -89,12 +81,7 @@ export class ListCoursesComponent implements OnInit {
   }
 
   public deleteItem(id: number) {
-    this.loading = this.authService.setLoading();
-    this.coursesService
-    .removeItem(id)
-    .subscribe(() => {
-      this.courses = this.courses.filter(course => course.id !== id);
-      this.loading = this.authService.setLoading();
-    })
+    this.store.dispatch(new DeleteCourseAction({id}));
+    this.loading = this.authService.setLoading(true);
   }  
 }

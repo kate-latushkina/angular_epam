@@ -30,18 +30,18 @@ export class LoginComponent implements OnInit {
   }
 
   showUser(name: string, password: number) {
-    this.loading = this.authService.setLoading();
+    this.loading = this.authService.setLoading(true);
     this.authService
     .checkUser(name, password).pipe(switchMap(token => {
       return this.httpClient.post('http://localhost:3004/auth/userinfo', token).pipe(
         tap(() => this.authService.login(name, password)),
         tap(() => {
           this.router.navigate(['/main']);
-          this.loading = this.authService.setLoading();
+          this.loading = this.authService.setLoading(false);
         }))
     }), catchError(error => {
       this.isError = true;
-      this.loading = this.authService.setLoading()
+      this.loading = this.authService.setLoading(false)
       return of(error)
     })).subscribe()
   }

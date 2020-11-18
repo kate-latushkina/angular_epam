@@ -13,7 +13,16 @@ export function CourseReducer(state = initialState, action: CourseAction) {
         ...state,
         courses: action.payload.courses,
       };
-
+    case COURSE_ACTIONS.ERROR_LOAD:
+      return {
+        ...state,
+        error: '',
+      };
+    // case COURSE_ACTIONS.STORE_AUTHORS:
+    //   return {
+    //     ...state,
+    //     authors: action.payload.authors,
+    //   };
     default:
       return state;
   }

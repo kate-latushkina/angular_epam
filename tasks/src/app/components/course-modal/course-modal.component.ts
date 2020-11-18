@@ -4,6 +4,9 @@ import { CoursesService } from '../../services/courses.service';
 import { Modal } from 'src/app/classes/modal';
 import { ICourse } from 'src/app/interfaces/course';
 import { NgForm } from '@angular/forms';
+import { AddCourseAction, UpdateCourseAction } from 'src/app/state/actions';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-course-modal',
@@ -18,8 +21,10 @@ export class CourseModalComponent implements OnInit {
   public defaultDescription: string;
   public defaultLength: number;
   public defaultDate: Date;
-  // public allAuthors;
-  constructor(public modalCourseService: ModalCourseService, public coursesService: CoursesService) { }
+
+  constructor(public modalCourseService: ModalCourseService, 
+    public coursesService: CoursesService, 
+    public store: Store<IAppState>) { }
 
   public ngOnInit(): void {
     this.modalCourseService.isOpen.subscribe((modal: Modal) => {
@@ -38,16 +43,15 @@ export class CourseModalComponent implements OnInit {
     this.modalCourseService.closeModal()
   }
 
-  public saveCourse(form: NgForm) {
+  public saveCourse(item: NgForm) {
     if (this.defaultName) {
-      this.coursesService
-      .updateItem(form.value, this.item.id)
-      .subscribe()
+      const course = item.value
+      const id = this.item.id
+      this.store.dispatch(new UpdateCourseAction({course, id}));
       this.modalCourseService.closeModal();
     } else {
-      this.coursesService
-      .saveNewItem(form.value)
-      .subscribe()
+      const newCourse = item.value
+      this.store.dispatch(new AddCourseAction({newCourse}));
     }
   }
 

@@ -1,7 +1,7 @@
 <div class="courses">
   <app-search></app-search>
   <app-add-course></app-add-course>
-  <app-course (onFavorite)="makeFavorite(item, $event)" 
+  <app-course (onFavorite)="makeFavorite(item)" 
   (onDelete)="openDeleteModal($event)" 
   [item]='item'
   *ngFor='let item of courseList'>

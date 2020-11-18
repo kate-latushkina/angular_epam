@@ -26,8 +26,8 @@ export class AuthService {
     return this.isAuth;
   }
 
-  public setLoading() {
-    this.loading = !this.loading;
+  public setLoading(value: boolean) {
+    this.loading = value;
     return this.loading
   }
 
