@@ -10,7 +10,6 @@ import { CoursesService } from '../services/courses.service';
 import { AddCourseAction, AuthAction, DeleteCourseAction, ErrorAction, LoadCoursesAction, LoginAction, LoginFailedAction, StoreCoursesAction, UpdateCourseAction } from './actions';
 import { COURSE_ACTIONS, AUTH_ACTIONS } from './constants';
 import { ToastrService } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Injectable()
 export class CourseEffect {

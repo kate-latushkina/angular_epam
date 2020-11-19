@@ -27,12 +27,6 @@ export class LoginComponent implements OnInit {
   }
 
   showUser(login: string, password: number) {
-    // this.loading = this.authService.setLoading(true);
     this.store.dispatch(new AuthAction({login, password}));
-    
-      // catchError(error => {
-      //   this.loading = this.authService.setLoading(false)
-      //   return of(error)
-      // })).subscribe()
   }
 }
