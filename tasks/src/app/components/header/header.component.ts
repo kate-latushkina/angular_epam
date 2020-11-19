@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Autentification } from 'src/app/classes/autentification';
+import { UserInfo } from 'src/app/classes/userInfo';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -11,14 +11,14 @@ export class HeaderComponent implements OnInit {
 
   public isAuth: boolean;
   public userName: string;
-  public userPassword: number;
   constructor(public authService: AuthService) {}
 
   public ngOnInit(): void {
-    this.authService.isAuth.subscribe((user: Autentification) => {
+    this.authService.isAuth.subscribe((user: UserInfo) => {
       this.isAuth = user.isAuth;
-      this.userName = user.firstName;
-      this.userPassword = user.password;
+      if(this.isAuth) {
+        this.userName = `${user.name.first} ${user.name.last}`;
+      }
     })
   }
 }

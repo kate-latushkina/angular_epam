@@ -8,3 +8,8 @@ export interface ICourseState {
     course: ICourse;
     error: HttpErrorResponse;
 }
+
+export interface IAuthState {
+    token: string,
+    error: HttpErrorResponse
+}

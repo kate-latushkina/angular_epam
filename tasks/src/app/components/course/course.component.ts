@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ICourse } from '../../interfaces/course';
 import { ModalCourseService } from '../../services/modal-course.service';
-import { Autentification } from '../../classes/autentification'
+import { UserInfo } from '../../classes/userInfo'
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class CourseComponent {
     this.modalCourseService.openModal(this.item);
   }
   public ngOnInit(): void {
-    this.authService.isAuth.subscribe((user: Autentification) => {
+    this.authService.isAuth.subscribe((user: UserInfo) => {
       this.isAuth = user.isAuth;
     })
   }

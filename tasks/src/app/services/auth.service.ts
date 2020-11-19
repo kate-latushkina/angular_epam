@@ -1,29 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Autentification } from '../classes/autentification';
+import { UserInfo } from '../classes/userInfo';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public isAuth: BehaviorSubject<Autentification> = new BehaviorSubject<Autentification>(new Autentification());
-  public token = null;
+  public isAuth: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>(new UserInfo());
   public loading = false;
   constructor(private httpClient: HttpClient) {}
 
-  public login(name: string, password: number) {
-    const user = new Autentification()
+  public login(newUser) {
+    const user = new UserInfo()
     user.isAuth = true;
-    user.firstName = name;
-    user.password = password;
+    user.login = newUser.login;
+    user.name = newUser.name;
     this.isAuth.next(user);
-  }
-
-  public isAuthentication() {
-    return this.isAuth;
   }
 
   public setLoading(value: boolean) {
@@ -33,20 +27,15 @@ export class AuthService {
 
   public checkUser(name: string, password: number) {
     const data = {login: name, password: password};
-    return this.httpClient.post('http://localhost:3004/auth/login', data).pipe(
-      tap(token => {
-        localStorage.setItem('token', token['token']);
-        this.setToken(token['token']);
-      })
-    )
+    return this.httpClient.post('http://localhost:3004/auth/login', data)
   }
 
-  public setToken(token: string) {
-    this.token = token
+  public showUser(token: string) {    
+    return this.httpClient.post('http://localhost:3004/auth/userinfo', {token});
   }
 
   public logout() {
-    const user = new Autentification()
+    const user = new UserInfo()
     user.isAuth = false;
     this.isAuth.next(user);
   }

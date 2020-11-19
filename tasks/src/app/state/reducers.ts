@@ -1,12 +1,12 @@
-import { CourseAction } from './actions';
-import { COURSE_ACTIONS } from './constants';
+import { Actions } from './actions';
+import { COURSE_ACTIONS, AUTH_ACTIONS } from './constants';
 
 const initialState = {
   courses: [],
   error: '',
 }
 
-export function CourseReducer(state = initialState, action: CourseAction) {
+export function CourseReducer(state = initialState, action: Actions) {
   switch (action.type) {
     case COURSE_ACTIONS.STORE_COURSES:
       return {
@@ -26,4 +26,26 @@ export function CourseReducer(state = initialState, action: CourseAction) {
     default:
       return state;
   }
-} 
+}
+
+const defaultState = {
+  token: '',
+  error: '',
+};
+
+export function AuthReducer(state = defaultState, action: Actions) {
+  switch (action.type) {
+    case AUTH_ACTIONS.LOGIN:
+      return {
+        ...state,
+        token: action.payload.token,
+      };
+    case AUTH_ACTIONS.LOGIN_FAILED:
+      return {
+        ...state,
+        error: action.payload.error,
+      };
+    default:
+      return state;
+  }
+}

@@ -14,7 +14,7 @@ export class CoursesService {
   public countCourses: number = 3;
   public text$: Subject<string> = new Subject;
 
-  constructor(public modalCourseService: ModalCourseService, private httpClient: HttpClient,) {}
+  constructor(public modalCourseService: ModalCourseService, private httpClient: HttpClient) {}
 
   public getList(page: number = 1, textFragment?: string) {
     const data = {

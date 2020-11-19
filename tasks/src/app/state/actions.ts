@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Action } from '@ngrx/store';
 import { ICourse } from '../interfaces/course';
-import { COURSE_ACTIONS } from './constants'; 
+import { COURSE_ACTIONS, AUTH_ACTIONS } from './constants'; 
 
 export class LoadCoursesAction implements Action {
   readonly type = COURSE_ACTIONS.LOAD_COURSES;
@@ -33,10 +33,27 @@ export class AddCourseAction implements Action {
   constructor(public payload: {newCourse: ICourse}) { }
 }
 
-export type CourseAction = 
+export class AuthAction implements Action {
+  readonly type = AUTH_ACTIONS.AUTH;
+  constructor(public payload: {login: string, password: number}) { }
+}
+
+export class LoginAction implements Action {
+  readonly type = AUTH_ACTIONS.LOGIN;
+  constructor(public payload: {token: string}) { }
+}
+
+export class LoginFailedAction implements Action {
+  readonly type = AUTH_ACTIONS.LOGIN_FAILED;
+  constructor(public payload: {error: HttpErrorResponse}) { }
+}
+
+export type Actions = 
 LoadCoursesAction | 
 StoreCoursesAction | 
 ErrorAction | 
 UpdateCourseAction |
 DeleteCourseAction | 
-AddCourseAction
+AddCourseAction |
+AuthAction |
+LoginAction | LoginFailedAction

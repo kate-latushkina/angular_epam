@@ -1,7 +1,6 @@
-import { ICourseState } from './state/models';
-// import { IAuthState } from "./core/state/models";
+import { ICourseState, IAuthState } from './state/models';
 
 export interface IAppState {
     course: ICourseState;
-    // author: IAuthState;
+    auth: IAuthState;
 }

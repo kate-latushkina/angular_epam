@@ -28,9 +28,12 @@ import { CourseModalComponent } from './components/course-modal/course-modal.com
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { TokenInterceptor } from './interceptors/token.interseptor';
 import { NgxLoadingModule } from 'ngx-loading';
-import { CourseReducer } from './state/reducers';
+import { AuthReducer, CourseReducer } from './state/reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { CourseEffect } from './state/effects';
+import { CourseEffect, AuthEffects } from './state/effects';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -60,8 +63,11 @@ import { CourseEffect } from './state/effects';
     NgbModule,
     HttpClientModule,
     NgxLoadingModule.forRoot({}),
-    StoreModule.forRoot({course: CourseReducer}),
-    EffectsModule.forRoot([CourseEffect])
+    StoreModule.forRoot({course: CourseReducer, auth: AuthReducer}),
+    EffectsModule.forRoot([CourseEffect, AuthEffects]),
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({}),
   ],
   providers: [
     CoursesService,

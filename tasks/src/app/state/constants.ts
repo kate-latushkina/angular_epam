@@ -6,3 +6,9 @@ export enum COURSE_ACTIONS {
   DELETE_COURSE = 'DELETE_COURSE',
   ERROR_LOAD = 'ERROR_LOAD'
 }
+
+export enum AUTH_ACTIONS {
+  AUTH = 'AUTH',
+  LOGIN = "LOGIN",
+  LOGIN_FAILED = "LOG_FAILED",
+}

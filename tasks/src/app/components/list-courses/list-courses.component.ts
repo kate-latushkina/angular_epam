@@ -39,6 +39,7 @@ export class ListCoursesComponent implements OnInit {
           this.loading = this.authService.setLoading(true);
           this.courseList = [];
           this.isFound = false;
+          this.loading = this.authService.setLoading(false);
         } else {
           this.courseList = newCoursesList;
           this.isFound = true;

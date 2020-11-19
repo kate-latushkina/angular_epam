@@ -6,16 +6,18 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService) { }
 
-  intercept(req: HttpRequest<unknown>, next: HttpHandler) : Observable<HttpEvent<unknown>> {
-    if (this.authService.isAuthentication()) {
-      req = req.clone({
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const authReq = req = req.clone({
         setHeaders: {
           Authentication: localStorage.getItem('token')
         }
       })
+      return next.handle(authReq);
     }
-    return next.handle(req)
+    return next.handle(req);
   }
 }

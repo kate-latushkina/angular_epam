@@ -18,13 +18,15 @@
     display: flex;
 }
 .user-section {
-    width: 220px;
     display: flex;
     justify-content: space-between;
     color: $text-white;
 }
 .login, .logout {
     margin: auto 0;
+}
+.logout {
+    margin-left: 15px;
 }
 
 .logout-button {

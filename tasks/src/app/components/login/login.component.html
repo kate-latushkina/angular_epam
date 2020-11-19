@@ -1,8 +1,5 @@
 <form class="login-form" #authForm="ngForm" (ngSubmit)="showUser(inputUserName.value, inputUserPassword.value)">
   <h4 class="login-title">Login</h4>
-  <div class="alert alert-danger" role="alert" *ngIf="isError">
-    Wrong e-mail or password
-  </div>
   <div class="form-group">
     <div class="first-line">
       <span>Email:</span>
