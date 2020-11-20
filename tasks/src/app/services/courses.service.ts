@@ -37,6 +37,7 @@ export class CoursesService {
 
   public saveNewItem(itemData: ICourse) {
     this.modalCourseService.closeModal();
+    console.log(itemData)
     return this.httpClient.post(`http://localhost:3004/courses`, itemData)
   }
 

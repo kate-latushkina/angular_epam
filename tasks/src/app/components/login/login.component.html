@@ -1,19 +1,21 @@
-<form class="login-form" #authForm="ngForm" (ngSubmit)="showUser(inputUserName.value, inputUserPassword.value)">
+<form class="login-form" [formGroup]="authForm" (ngSubmit)="showUser()">
   <h4 class="login-title">Login</h4>
   <div class="form-group">
     <div class="first-line">
       <span>Email:</span>
       <span class="small">*required</span>
     </div>
-    <input type="email" class="form-control" placeholder="Enter e-mail" required #inputUserName ngModel name="email">
+    <input type="email" class="form-control" placeholder="Enter e-mail" name="email" formControlName='login'
+    [ngClass]="{'is-invalid': authForm.get('login').invalid && authForm.get('login').touched}">
   </div>
   <div class="form-group">
     <div class="first-line">
       <span>Password:</span>
       <span class="small">*required</span>
     </div>
-    <input type="password" class="form-control" placeholder="Enter password" required #inputUserPassword ngModel name="password">
+    <input type="password" class="form-control" placeholder="Enter password" name="password" formControlName='password'
+    [ngClass]="{'is-invalid': authForm.get('password').invalid && authForm.get('password').touched}">
   </div>
-  <button class="btn btn-success" [disabled]="!authForm.valid" type="submit">Login</button>
+  <button class="btn btn-success" [disabled]="authForm.invalid" type="submit">Login</button>
   <ngx-loading [show]="loading"></ngx-loading>
 </form>

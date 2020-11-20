@@ -14,15 +14,21 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class CourseEffect {
 
+  public pageNum: number;
+  public text: string;
+
   constructor(private actions$: Actions,
     private coursesService: CoursesService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    private toastr: ToastrService) { }
 
   @Effect()
   course$ = this.actions$.pipe(
     ofType(COURSE_ACTIONS.LOAD_COURSES),
     switchMap((action: LoadCoursesAction) => {
       const { pageCoursesList, textFragment } = action.payload;
+      this.pageNum = pageCoursesList;
+      this.text = textFragment;
       return this.coursesService.getList(pageCoursesList, textFragment)
         .pipe(
           map((courses: ICourse[]) => {
@@ -41,7 +47,7 @@ export class CourseEffect {
       return this.coursesService.updateItem(course, id)
         .pipe(
           map(() => {
-            return new LoadCoursesAction({ pageCoursesList: 1, textFragment: '' })
+            return new LoadCoursesAction({ pageCoursesList: this.pageNum, textFragment: this.text })
           }),
           catchError((error: HttpErrorResponse) => of(new ErrorAction(error)))
         );
@@ -55,7 +61,7 @@ export class CourseEffect {
       return this.coursesService.removeItem(action.payload.id)
         .pipe(
           map(() => {
-            return new LoadCoursesAction({ pageCoursesList: 1, textFragment: '' })
+            return new LoadCoursesAction({ pageCoursesList: this.pageNum , textFragment: '' })
           }),
           catchError((error: HttpErrorResponse) => of(new ErrorAction(error)))
         );
@@ -69,7 +75,8 @@ export class CourseEffect {
       return this.coursesService.saveNewItem(action.payload.newCourse)
         .pipe(
           map(() => {
-            return new LoadCoursesAction({ pageCoursesList: 1, textFragment: '' })
+            this.toastr.success('New course added');
+            return new LoadCoursesAction({ pageCoursesList: this.pageNum, textFragment: '' })
           }),
           catchError((error: HttpErrorResponse) => of(new ErrorAction(error)))
         );

@@ -4,6 +4,7 @@ import { UserInfo } from '../../classes/userInfo'
 import { AuthAction } from 'src/app/state/actions';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/app.state';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   public isDisabled: boolean = true;
   public isAuth: boolean;
   public loading: boolean = false;
+  public authForm: FormGroup;
 
   constructor(public authService: AuthService, 
     private store: Store<IAppState>
@@ -24,9 +26,14 @@ export class LoginComponent implements OnInit {
     this.authService.isAuth.subscribe((user: UserInfo) => {
       this.isAuth = user.isAuth;
     })
+    this.authForm = new FormGroup({
+      login: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
 
-  showUser(login: string, password: number) {
+  showUser() {
+    const {login, password} = this.authForm.value;
     this.store.dispatch(new AuthAction({login, password}));
   }
 }

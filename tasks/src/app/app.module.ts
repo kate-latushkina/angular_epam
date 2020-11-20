@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
@@ -59,7 +59,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
     NgxLoadingModule.forRoot({}),
