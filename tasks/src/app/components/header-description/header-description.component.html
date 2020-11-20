@@ -1,3 +1,11 @@
 <div class="header-description">
-    <div class="my-container">Courses</div>
+    <div class="my-container">
+        <span>{{'header.courses' | translate}}</span>
+        <div class="lang">
+            <button value="EN" class="btn" (click)="setLanguage(0)"
+            [ngClass]="{'btn-info': changeClass}">EN</button>
+            <button value="RU" class="btn" (click)="setLanguage(1)"
+            [ngClass]="{'btn-info': !changeClass}">RU</button>
+        </div>
+    </div>
 </div>

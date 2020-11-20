@@ -2,3 +2,11 @@
 .header-description {
     background-color: $background-lavender;
 }
+.my-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    span {
+        margin: auto 0;
+    }
+}
