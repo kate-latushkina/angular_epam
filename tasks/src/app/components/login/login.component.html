@@ -1,21 +1,21 @@
 <form class="login-form" [formGroup]="authForm" (ngSubmit)="showUser()">
-  <h4 class="login-title">Login</h4>
+  <h4 class="login-title">{{'auth.login' | translate}}</h4>
   <div class="form-group">
     <div class="first-line">
       <span>Email:</span>
-      <span class="small">*required</span>
+      <span class="small">*{{'general.required' | translate}}</span>
     </div>
-    <input type="email" class="form-control" placeholder="Enter e-mail" name="email" formControlName='login'
+    <input type="email" class="form-control" placeholder="{{'auth.enter' | translate}} email" name="email" formControlName='login'
     [ngClass]="{'is-invalid': authForm.get('login').invalid && authForm.get('login').touched}">
   </div>
   <div class="form-group">
     <div class="first-line">
-      <span>Password:</span>
-      <span class="small">*required</span>
+      <span>{{'auth.password' | translate}}:</span>
+      <span class="small">*{{'general.required' | translate}}</span>
     </div>
-    <input type="password" class="form-control" placeholder="Enter password" name="password" formControlName='password'
+    <input type="password" class="form-control" placeholder="{{'auth.enter' | translate}} password" name="password" formControlName='password'
     [ngClass]="{'is-invalid': authForm.get('password').invalid && authForm.get('password').touched}">
   </div>
-  <button class="btn btn-success" [disabled]="authForm.invalid" type="submit">Login</button>
+  <button class="btn btn-success" [disabled]="authForm.invalid" type="submit">{{'auth.login' | translate}}</button>
   <ngx-loading [show]="loading"></ngx-loading>
 </form>
