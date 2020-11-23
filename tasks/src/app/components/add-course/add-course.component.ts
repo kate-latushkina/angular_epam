@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Modal } from 'src/app/classes/modal';
 import { CoursesService } from '../../services/courses.service';
 import { ModalCourseService } from '../../services/modal-course.service';
@@ -8,7 +8,7 @@ import { ModalCourseService } from '../../services/modal-course.service';
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.scss']
 })
-export class AddCourseComponent implements OnInit {
+export class AddCourseComponent implements OnInit, OnDestroy {
 
   public isOpen: boolean;
   constructor(public coursesService: CoursesService, public modalCourseService: ModalCourseService) {}
@@ -17,5 +17,9 @@ export class AddCourseComponent implements OnInit {
     this.modalCourseService.isOpen.subscribe((modal: Modal) => {
       this.isOpen = modal.isOpen;
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.modalCourseService.isOpen.unsubscribe();
   }
 }

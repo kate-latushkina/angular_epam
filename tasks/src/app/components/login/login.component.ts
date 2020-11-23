@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  showUser() {
+  public showUser(): void {
     const {login, password} = this.authForm.value;
     this.store.dispatch(new AuthAction({login, password}));
   }

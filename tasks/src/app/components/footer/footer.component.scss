@@ -1,11 +1,11 @@
 @import '../../../colors';
 .footer {
     width: 100%;
-    background-color: $background-grey;
+    background-color: $grey-color;
     position: fixed;
     bottom: 0;
     left: 0;
-    color: $text-white;
+    color: $white-color;
 }
 .my-container {
     display: flex;

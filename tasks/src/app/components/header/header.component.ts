@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     this.authService.isAuth.subscribe((user: UserInfo) => {
       this.isAuth = user.isAuth;
       if(this.isAuth) {
-        this.userName = `${user.name.first} ${user.name.last}`;
+        this.userName = `${user.name['first']} ${user.name['last']}`;
       }
     })
   }

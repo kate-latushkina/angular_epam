@@ -6,9 +6,9 @@ import { LoginComponent } from './components/login/login.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 const appRoutes: Routes =[
-  { path: 'main', component: HomeComponent},
+  { path: 'main', component: HomeComponent, pathMatch:'full'},
   { path: '', component: LoginComponent},
-  { path: 'courses', component: ListCoursesComponent},
+  { path: 'courses', component: ListCoursesComponent, pathMatch:'full'},
   { path: '**', component: ErrorPageComponent},
 ];
 

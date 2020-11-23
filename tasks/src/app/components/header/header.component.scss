@@ -1,11 +1,11 @@
 @import '../../../colors';
 .header {
     width: 100%;
-    background-color: $background-grey;
+    background-color: $grey-color;
 }
 .title-name {
     margin: auto 0 auto 10px;
-    color: $text-white;
+    color: $white-color;
 }
 .logo {
     width: 40px;
@@ -20,7 +20,7 @@
 .user-section {
     display: flex;
     justify-content: space-between;
-    color: $text-white;
+    color: $white-color;
 }
 .login, .logout {
     margin: auto 0;
@@ -32,7 +32,7 @@
 .logout-button {
     cursor: pointer;
     background-color: inherit;
-    color: $text-white;
+    color: $white-color;
     border: none;
     outline: none;
 }

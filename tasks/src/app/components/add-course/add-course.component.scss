@@ -10,15 +10,15 @@
   justify-content: space-evenly;
   width: 145px;
   height: 35px;
-  background-color: $cornflowerblue;
+  background-color: $cornflowerblue-color;
   border: 2px solid transparent;
   border-radius: 5px;
-  color: $text-white;
+  color: $white-color;
   outline: none;
   cursor: pointer;
 }
 .add-course:hover {
-  border: 2px solid $border-blue;
+  border: 2px solid $blue-color;
 }
 .plus {
   width: 17px;

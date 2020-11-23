@@ -14,9 +14,9 @@ export class DateDirective implements AfterViewInit {
 
     public ngAfterViewInit(): void {
         const itemValue = this.itemDate.date;
-        const howManyDays = moment(itemValue).fromNow();
-        const numDays = +howManyDays.split(' ')[0];
-        const isYearAgo = howManyDays.split(' ')[1]
+        const howManyDays = moment(itemValue).fromNow();        
+        const numDays = parseInt(howManyDays[0], 10);
+        const isYearAgo = howManyDays.split(' ')[1];
         if (isYearAgo === 'year' || isYearAgo === 'years') {
             this.el.nativeElement.style.border = '1px solid black';
         } else {

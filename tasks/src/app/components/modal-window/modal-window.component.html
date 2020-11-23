@@ -1,9 +1,9 @@
 <div class="modal-window" *ngIf="isOpen">
   <div class="modal-section" >
-    <p class="modal-text">Are you sure?<br>You want to delete this course</p>
+    <p class="modal-text">{{'modal.sure' | translate}}<br>{{'modal.modal-text' | translate}}</p>
     <div class="buttons">
-      <button class="btn btn-danger" (click)="modalService.closeModal()">Cancel</button>
-      <button class="btn btn-success" (click)="close()">OK</button>
+      <button class="btn btn-danger" (click)="modalService.closeModal()">{{'courseInfo.cancel' | translate}}</button>
+      <button class="btn btn-success" (click)="close()">{{'modal.ok' | translate}}</button>
     </div>
   </div>
 </div>

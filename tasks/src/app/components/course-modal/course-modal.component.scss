@@ -5,11 +5,11 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: $background-modal-shadow;
+    background-color: $black-shadow-color;
   }
 .modal-section {
     width: 45%;
-    background-color: $background-white;
+    background-color: $white-color;
     border-radius: 10px;
     padding: 25px 20px;
     position: absolute;
@@ -20,13 +20,13 @@
 .info-name, .info-description, .info-duration, .info-authors, .info-date {
     margin-top: 10px;
 }
-label {
+.label {
     font-weight: bold;
 }
 .info-buttons {
     margin-top: 25px;
 }
-#i-description {
+.desk {
     resize: none;
 }
 .info-buttons {
@@ -61,7 +61,7 @@ label {
     list-style-type: none;
     margin: 3px 5px;
     padding: 2px 6px;
-    background-color: $background-modal-shadow;
+    background-color: $black-shadow-color;
     border-radius: 5px;
     color: white;
 }

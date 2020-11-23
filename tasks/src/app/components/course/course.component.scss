@@ -24,16 +24,16 @@
 }
 .edit, .delete {
   width: 115px;
-  color: $text-white;
+  color: $white-color;
   cursor: pointer;
-  background-color: $cornflowerblue;
+  background-color: $cornflowerblue-color;
   border: none;
   border-radius: 5px;
   text-align: center;
   font-size: 16px;
 }
 .edit:hover, .delete:hover {
-  border: 2px solid $border-blue;
+  border: 2px solid $blue-color;
 }
 .course-button {
   width: 17px;
@@ -54,8 +54,8 @@
   margin-left: 15px;
   width: 20px;
   cursor: pointer;
-  fill: $star-gray;
+  fill: $lightgrey-color;
 }
 .active {
-  fill: $active-icon;
+  fill: $orange-color;
 }

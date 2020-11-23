@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Modal } from 'src/app/classes/modal';
 import { ModalService } from '../../services/modal.service';
 
@@ -7,7 +7,7 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: './modal-window.component.html',
   styleUrls: ['./modal-window.component.scss']
 })
-export class ModalWindowComponent implements OnInit {
+export class ModalWindowComponent implements OnInit, OnDestroy {
 
   public isOpen: boolean;
   public closeFn: () => void;
@@ -22,5 +22,9 @@ export class ModalWindowComponent implements OnInit {
   public close() {
     this.closeFn()
     this.modalService.closeModal()
+  }
+
+  public ngOnDestroy(): void {
+    this.modalService.isOpen.unsubscribe();
   }
 }

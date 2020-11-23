@@ -29,5 +29,14 @@
     "cancel": "Cancel",
     "authors": "Authors",
     "type": "Start typing"
+  },
+  "error-page": {
+    "error": "Error 404. Page not found"
+  },
+  "not-courses": "Not courses",
+  "modal": {
+    "sure": "Are you sure?",
+    "modal-text": "You want to delete this course",
+    "ok": "OK"
   }
 }

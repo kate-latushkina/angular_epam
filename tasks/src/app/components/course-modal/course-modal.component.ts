@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
 import { ModalCourseService } from '../../services/modal-course.service';
 import { CoursesService } from '../../services/courses.service';
 import { Modal } from 'src/app/classes/modal';
@@ -22,7 +22,7 @@ export const FORM_DATE_VALUE_ACCESSOR = {
   styleUrls: ['./course-modal.component.scss'],
   providers: [FORM_DATE_VALUE_ACCESSOR]
 })
-export class CourseModalComponent implements ControlValueAccessor {
+export class CourseModalComponent implements ControlValueAccessor, OnInit, OnDestroy {
 
   public isOpen: boolean;
   public item: ICourse;
@@ -44,13 +44,21 @@ export class CourseModalComponent implements ControlValueAccessor {
         this.item = modal.course;
       }
       this.getAllAuthors()
-      this.formModal = new FormGroup({
-        titleControl: new FormControl(this.item.name, [Validators.required, Validators.maxLength(50)]),
-        descriptionControl: new FormControl(this.item.description, [Validators.required, Validators.maxLength(500)]),
-        lengthControl: new FormControl(this.item.length, Validators.required),
-        dateControl: new FormControl(formatDate(this.item.date, 'yyyy-MM-dd', 'en'), Validators.required),
-        authorControl: new FormControl('')
-      });
+      this.setForm();
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.modalCourseService.isOpen.unsubscribe();
+  }
+  
+  public setForm() {
+    this.formModal = new FormGroup({
+      titleControl: new FormControl(this.item.name, [Validators.required, Validators.maxLength(50)]),
+      descriptionControl: new FormControl(this.item.description, [Validators.required, Validators.maxLength(500)]),
+      lengthControl: new FormControl(this.item.length, Validators.required),
+      dateControl: new FormControl(formatDate(this.item.date, 'yyyy-MM-dd', 'en'), Validators.required),
+      authorControl: new FormControl('')
     });
   }
 
@@ -82,7 +90,7 @@ export class CourseModalComponent implements ControlValueAccessor {
       .getAuthors()
       .subscribe(authors => {
         this.allAuthors = authors;
-      })
+      })  
     this.choosedAuthors = this.item.authors;
   }
 
@@ -93,7 +101,7 @@ export class CourseModalComponent implements ControlValueAccessor {
   }
 
   public addAuthor(author: IAuthor) {
-    if(this.choosedAuthors.id === null) {
+    if(this.choosedAuthors['id'] === null) {
       this.choosedAuthors = [author]
     } else {
       this.choosedAuthors = [...this.choosedAuthors, author];

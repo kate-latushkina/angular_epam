@@ -3,38 +3,38 @@
         <h5>{{'courseInfo.course' | translate}}/<u>{{item.name}}</u></h5>
         <div class="info-name">
             <div class="first-line">
-                <label for="i-title">{{'courseInfo.title' | translate}}</label>
+                <label class="label" for="i-title">{{'courseInfo.title' | translate}}</label>
                 <span class="small">*{{'general.required' | translate}}</span>
             </div>
             <input type="text" id="i-title" 
-            placeholder="{{'courseInfo.titlePlaceholder' | translate}}" class="form-control" 
+            [placeholder]="'courseInfo.titlePlaceholder' | translate" class="form-control" 
             formControlName='titleControl' name="name"
             [ngClass]="{'is-invalid': formModal.get('titleControl').invalid && formModal.get('titleControl').touched}">
         </div>
         <div class="info-description">
             <div class="first-line">
-                <label for="i-description">{{'courseInfo.description' | translate}}</label>
+                <label class="label desk" for="i-description">{{'courseInfo.description' | translate}}</label>
                 <span class="small">*{{'general.required' | translate}}</span>
             </div>
-            <textarea rows="5" placeholder="{{'courseInfo.deskPlaceholder' | translate}}" id="i-description"
+            <textarea rows="5" [placeholder]="'courseInfo.deskPlaceholder' | translate" id="i-description"
              class="form-control" formControlName='descriptionControl' name="description"
              [ngClass]="{'is-invalid': formModal.get('descriptionControl').invalid && formModal.get('descriptionControl').touched}"></textarea>
         </div>
         <div class="info-duration">
             <div class="time-item">
                 <div class="first-line">
-                    <label for="i-duration">{{'courseInfo.duration' | translate}}</label>
+                    <label class="label" for="i-duration">{{'courseInfo.duration' | translate}}</label>
                     <span class="small">*{{'general.required' | translate}}</span>
                 </div>
                 <input type="number" id="i-duration" class="form-control" 
-                placeholder="{{'courseInfo.minutes' | translate}}" formControlName='lengthControl' name="length" (change)="onChange($event.target.value)"
+                [placeholder]="'courseInfo.minutes' | translate" formControlName='lengthControl' name="length" (change)="onChange($event.target.value)"
                 [ngClass]="{'is-invalid': formModal.get('lengthControl').invalid && formModal.get('lengthControl').touched}">  
             </div>
             <span class="duration" *ngIf="item.length">{{item.length | hoursTime}}</span>
         </div>
         <div class="info-date">
             <div class="first-line">
-                <label for="i-date">{{'courseInfo.date' | translate}}</label>
+                <label class="label" for="i-date">{{'courseInfo.date' | translate}}</label>
                 <span class="small">*{{'general.required' | translate}}</span>
             </div>
             <input type="date" id="i-date" class="form-control" 
@@ -43,15 +43,15 @@
         </div>
         <div class="info-authors">
             <div class="first-line">
-                <label for="i-authors">{{'courseInfo.authors' | translate}}</label>
+                <label class="label" for="i-authors">{{'courseInfo.authors' | translate}}</label>
             </div>
             <ul *ngIf="item.name" class="authors-list">
-                <li *ngFor="let author of choosedAuthors" class="author" (click)="deleteAuthors(author)">{{author.name}} {{author.lastName}}</li>
+                <li *ngFor="let author of choosedAuthors" class="author" (click)="deleteAuthors(author)">{{author.name}}</li>
             </ul>
             <input type="text" list="i-authors" class="form-control" 
-            placeholder="{{'courseInfo.type' | translate}}" name="authors" formControlName="authorControl" (change)="onChange($event.target.value)">
+            [placeholder]="'courseInfo.type' | translate" name="authors" formControlName="authorControl" (change)="onChange($event.target.value)">
             <datalist id="i-authors">
-                <option *ngFor="let author of allAuthors" value="{{author.name}} {{author.lastName}}">
+                <option *ngFor="let author of allAuthors" value="{{author.name}}">
             </datalist>
         </div>
         <div class="info-buttons">
