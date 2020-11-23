@@ -1,0 +1,42 @@
+{
+  "header" : {
+    "courses": "Courses"
+  },
+  "auth": {
+    "login": "Login",
+    "password": "Password",
+    "enter": "Enter",
+    "logoff": "Log off"
+  },
+  "general": {
+    "required": "required"
+  },
+  "search": "Text to search",
+  "add": "Add course",
+  "edit": "Edit",
+  "delete": "Delete",
+  "load": "Load more",
+  "courseInfo" : {
+    "course": "Course",
+    "title": "Title",
+    "titlePlaceholder": "Text input",
+    "description": "Description",
+    "deskPlaceholder": "Add description",
+    "duration": "Duration",
+    "minutes": "minutes",
+    "date": "Date",
+    "save": "Save",
+    "cancel": "Cancel",
+    "authors": "Authors",
+    "type": "Start typing"
+  },
+  "error-page": {
+    "error": "Error 404. Page not found"
+  },
+  "not-courses": "Not courses",
+  "modal": {
+    "sure": "Are you sure?",
+    "modal-text": "You want to delete this course",
+    "ok": "OK"
+  }
+}

@@ -1,0 +1,42 @@
+@import '../../../colors';
+.header {
+    width: 100%;
+    background-color: $grey-color;
+}
+.title-name {
+    margin: auto 0 auto 10px;
+    color: $white-color;
+}
+.logo {
+    width: 40px;
+}
+.my-container {
+    display: flex;
+    justify-content: space-between;
+}
+.logo-section {
+    display: flex;
+}
+.user-section {
+    display: flex;
+    justify-content: space-between;
+    color: $white-color;
+}
+.login, .logout {
+    margin: auto 0;
+}
+.logout {
+    margin-left: 15px;
+}
+
+.logout-button {
+    cursor: pointer;
+    background-color: inherit;
+    color: $white-color;
+    border: none;
+    outline: none;
+}
+.icon {
+    height: 20px;
+    margin: -4px 8px -4px 0;
+}

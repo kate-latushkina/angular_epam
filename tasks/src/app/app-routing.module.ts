@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { ListCoursesComponent } from './components/list-courses/list-courses.component';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
-const routes: Routes = [];
+const appRoutes: Routes =[
+  { path: 'main', component: HomeComponent, pathMatch:'full'},
+  { path: '', component: LoginComponent},
+  { path: 'courses', component: ListCoursesComponent, pathMatch:'full'},
+  { path: '**', component: ErrorPageComponent},
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

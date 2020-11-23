@@ -1,0 +1,18 @@
+@import '../../../colors';
+
+.login-form {
+  width: 35%;
+  margin: 8rem auto;
+  padding: 20px;
+  border: 1px solid $grey-color;
+}
+.login-title {
+  margin-bottom: 20px;
+}
+.first-line {
+  display: flex;
+  justify-content: space-between;
+}
+.small {
+  color: $grey-color;
+}

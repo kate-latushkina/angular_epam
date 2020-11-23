@@ -1,0 +1,12 @@
+@import '../../../colors';
+.header-description {
+    background-color: $lavender-color;
+}
+.my-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    span {
+        margin: auto 0;
+    }
+}

@@ -1,0 +1,42 @@
+{
+  "header" : {
+    "courses": "Курсы"
+  },
+  "auth": {
+    "login": "Войти",
+    "password": "Пароль",
+    "enter": "Введите",
+    "logoff": "Выход"
+  },
+  "general": {
+    "required": "обязательно"
+  },
+  "search": "Введите текст для поиска",
+  "add": "Добавить курс",
+  "edit": "Изменить",
+  "delete": "Удалить",
+  "load": "Загрузить больше",
+  "courseInfo" : {
+    "course": "Курс",
+    "title": "Заголовок",
+    "titlePlaceholder": "Текстовое поле",
+    "description": "Описание",
+    "deskPlaceholder": "Добавьте описание",
+    "duration": "Время",
+    "minutes": "минуты",
+    "date": "Дата",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "authors": "Авторы",
+    "type": "Начните писать"
+  },
+  "error-page": {
+    "error": "Ошибка 404. Страница не найдена"
+  },
+  "not-courses": "Нет курсов",
+  "modal": {
+    "sure": "Вы уверены?",
+    "modal-text": "Вы хотите удалить этот курс",
+    "ok": "OK"
+  }
+}

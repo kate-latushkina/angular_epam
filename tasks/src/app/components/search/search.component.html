@@ -1,0 +1,3 @@
+<div class="search-panel">
+  <input type="text" [placeholder]="'search' | translate" class="search-input" [(ngModel)]="inputValue" (keyup)="this.coursesService.text$.next($event.target.value)">
+</div>
