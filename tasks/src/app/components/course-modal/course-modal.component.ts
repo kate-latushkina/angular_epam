@@ -27,8 +27,8 @@ export class CourseModalComponent implements ControlValueAccessor, OnInit, OnDes
   public isOpen: boolean;
   public item: ICourse;
   public formModal: FormGroup;
-  public allAuthors;
-  public choosedAuthors;
+  public allAuthors: IAuthor;
+  public choosedAuthors: IAuthor[] = [];
 
   public onChange: any = () => {};
   public onTouched: any = () => {};
@@ -62,18 +62,19 @@ export class CourseModalComponent implements ControlValueAccessor, OnInit, OnDes
     });
   }
 
-  public saveCourse() {
+  public saveCourse(): void {
     const course = Object.assign({}, this.item);
     course.name = this.formModal.value.titleControl;
     course.description = this.formModal.value.descriptionControl;
     course.date = new Date(Date.parse(this.formModal.value.dateControl));
     course.length = this.formModal.value.lengthControl;
-    this.allAuthors.forEach(element => {
-      const el = this.formModal.value.authorControl.trim()
-      if(element.name === el) {
-        this.addAuthor(element)
+    for(let key in this.allAuthors) {
+      const el = this.formModal.value.authorControl
+      if(this.allAuthors[key].name === el) {
+        this.addAuthor(this.allAuthors[key])
       }
-    });
+    }
+    console.log(this.choosedAuthors)
     course.authors = this.choosedAuthors;
     if (this.item.name) {
       const id = this.item.id;
@@ -88,21 +89,21 @@ export class CourseModalComponent implements ControlValueAccessor, OnInit, OnDes
   public getAllAuthors() {
     this.coursesService
       .getAuthors()
-      .subscribe(authors => {
+      .subscribe((authors: IAuthor) => {
         this.allAuthors = authors;
       })  
     this.choosedAuthors = this.item.authors;
   }
 
   public deleteAuthors(item: IAuthor) {
-    this.choosedAuthors = this.choosedAuthors.filter((author) => {
+    this.choosedAuthors = this.choosedAuthors.filter((author: IAuthor) => {
       return author.name !== item.name;
     });
   }
 
   public addAuthor(author: IAuthor) {
     if(this.choosedAuthors['id'] === null) {
-      this.choosedAuthors = [author]
+      this.choosedAuthors = [author];
     } else {
       this.choosedAuthors = [...this.choosedAuthors, author];
     }
