@@ -1,26 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CoursesService } from '../../services/courses.service';
+import { ModalService } from '../../services/modal.service';
 import { ICourse } from '../../interfaces/course';
+import { debounceTime, distinctUntilChanged, skipWhile } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/app.state';
+import { DeleteCourseAction, LoadCoursesAction, UpdateCourseAction } from 'src/app/state/actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-courses',
   templateUrl: './list-courses.component.html',
-  styleUrls: ['./list-courses.component.css']
+  styleUrls: ['./list-courses.component.scss'],
 })
 export class ListCoursesComponent implements OnInit {
 
+  public coursesListSub: Subscription;
+  public courseList: ICourse[] = [];
+
+  public pageCoursesList: number = 1;
+  public inputText: string;
+  @Input() item: ICourse;
+
+  public isFound: boolean;
+  public loading: boolean = false;
+
+  constructor(public coursesService: CoursesService, 
+    public modalService: ModalService,
+    public authService: AuthService,
+    public store: Store<IAppState>) 
+    {
+      this.coursesListSub = this.store
+      .select(state => state.course.courses)
+      .subscribe((newCoursesList) => {
+        if (newCoursesList.length === 0) {
+          this.loading = this.authService.setLoading(true);
+          this.courseList = [];
+          this.isFound = false;
+          this.loading = this.authService.setLoading(false);
+        } else {
+          this.courseList = newCoursesList;
+          this.isFound = true;
+          this.loading = this.authService.setLoading(false);
+        }
+      });
+    }
+
   public ngOnInit(): void {
+    this.coursesService.text$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      skipWhile(name => name.length < 3))
+      .subscribe(text => {
+        this.loadCourses(text)
+      })
+    this.loadCourses()
   }
 
-  public getCourses(): ICourse[] {
-    return [{
-      id: 1,
-      title: 'Video course 1',
-      createDate: '26/10/2020',
-      duration: '107 min',
-      description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-      sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    }]
+  public loadCourses(textFragment?: string): void {
+    this.loading = this.authService.setLoading(true);
+    const pageCoursesList = this.pageCoursesList;
+    this.store.dispatch(new LoadCoursesAction({pageCoursesList, textFragment}));
   }
+
+  public clickLoadMore() {
+    this.pageCoursesList++;
+    this.loadCourses()
+  }
+
+  public makeFavorite(newCourse: ICourse) {
+    const id = newCourse.id;
+    const course = Object.assign({}, newCourse)
+    course.isTopRated = !course.isTopRated
+    this.store.dispatch(new UpdateCourseAction({course, id}));
+  }
+
+  public openDeleteModal(id: number) {
+    this.modalService.openModal(this.deleteItem.bind(this, id))
+  }
+
+  public deleteItem(id: number) {
+    this.store.dispatch(new DeleteCourseAction({id}));
+    this.loading = this.authService.setLoading(true);
+  }  
 }

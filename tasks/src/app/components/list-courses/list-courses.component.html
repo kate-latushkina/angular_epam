@@ -1,8 +1,12 @@
-<div class="courses" *ngFor='let item of getCourses()'>
-  <div class="main-info">
-    <h3>{{item.title}}</h3>
-    <span class="create-date">{{item.createDate}}</span>
-    <span class="duration">{{item.duration}}</span>
-  </div>
-  <p class="description">{{item.description}}</p>
+<div class="courses">
+  <app-search></app-search>
+  <app-add-course></app-add-course>
+  <app-course (onFavorite)="makeFavorite(item)" 
+  (onDelete)="openDeleteModal($event)" 
+  [item]='item'
+  *ngFor='let item of courseList'>
+  </app-course>
 </div>
+<div *ngIf="!isFound" class="not-courses">Not courses</div>
+<app-load (click)="clickLoadMore()" *ngIf="isFound">Load more</app-load>
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true}"></ngx-loading>

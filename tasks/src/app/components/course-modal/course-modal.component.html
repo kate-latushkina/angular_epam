@@ -1,0 +1,62 @@
+<form class="modal-course" *ngIf="isOpen" (ngSubmit)="saveCourse()" [formGroup]="formModal">
+    <div class="modal-section">
+        <h5>Course/<u>{{item.name}}</u></h5>
+        <div class="info-name">
+            <div class="first-line">
+                <label for="i-title">Title</label>
+                <span class="small">*required</span>
+            </div>
+            <input type="text" id="i-title" 
+            placeholder="Text input" class="form-control" 
+            formControlName='titleControl' name="name"
+            [ngClass]="{'is-invalid': formModal.get('titleControl').invalid && formModal.get('titleControl').touched}">
+        </div>
+        <div class="info-description">
+            <div class="first-line">
+                <label for="i-description">Description</label>
+                <span class="small">*required</span>
+            </div>
+            <textarea rows="5" placeholder="Add description" id="i-description"
+             class="form-control" formControlName='descriptionControl' name="description"
+             [ngClass]="{'is-invalid': formModal.get('descriptionControl').invalid && formModal.get('descriptionControl').touched}"></textarea>
+        </div>
+        <div class="info-duration">
+            <div class="time-item">
+                <div class="first-line">
+                    <label for="i-duration">Duration</label>
+                    <span class="small">*required</span>
+                </div>
+                <input type="number" id="i-duration" class="form-control" 
+                placeholder="minutes" formControlName='lengthControl' name="length" (change)="onChange($event.target.value)"
+                [ngClass]="{'is-invalid': formModal.get('lengthControl').invalid && formModal.get('lengthControl').touched}">  
+            </div>
+            <span class="duration" *ngIf="item.length">{{item.length | hoursTime}}</span>
+        </div>
+        <div class="info-date">
+            <div class="first-line">
+                <label for="i-date">Date</label>
+                <span class="small">*required</span>
+            </div>
+            <input type="date" id="i-date" class="form-control" 
+            formControlName="dateControl" (change)="onChange($event.target.value)"
+            [ngClass]="{'is-invalid': formModal.get('dateControl').invalid && formModal.get('dateControl').touched}">
+        </div>
+        <div class="info-authors">
+            <div class="first-line">
+                <label for="i-authors">Authors</label>
+            </div>
+            <ul *ngIf="item.name" class="authors-list">
+                <li *ngFor="let author of choosedAuthors" class="author" (click)="deleteAuthors(author)">{{author.name}} {{author.lastName}}</li>
+            </ul>
+            <input type="text" list="i-authors" class="form-control" 
+            placeholder="Start typing" name="authors" formControlName="authorControl" (change)="onChange($event.target.value)">
+            <datalist id="i-authors">
+                <option *ngFor="let author of allAuthors" value="{{author.name}} {{author.lastName}}">
+            </datalist>
+        </div>
+        <div class="info-buttons">
+            <button class="btn btn-secondary" (click)="modalCourseService.closeModal()">Cancel</button>
+            <button class="btn btn-success" [disabled]="formModal.invalid" type="submit">Save</button>
+        </div>
+    </div>
+</form>
